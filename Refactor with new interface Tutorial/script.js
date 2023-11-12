@@ -1,18 +1,18 @@
 //Global Variable
 
-let background = document.querySelector('.color-section_color-picker');
+//let background = document.querySelector('.color-section_color-picker');
 let divElement = null;
 
 let copyButton = document.querySelector('.change-color-section_header p');
 let inputHex = document.querySelector(".input-div_input-hex input");
-let inputRgb = document.querySelector(".input-div_input-rgb input");
+// let inputRgb = document.querySelector(".input-div_input-rgb input");
 
-let redColor = document.getElementById('red');
-let redValue = document.querySelector('.adjust-rgb_red span')
-let greenColor = document.getElementById('green');
-let greenValue = document.querySelector('.adjust-rgb_green span') 
-let blueColor = document.getElementById('blue');
-let blueValue = document.querySelector('.adjust-rgb_blue span')
+// let redColor = document.getElementById('red');
+// let redValue = document.querySelector('.adjust-rgb_red span')
+// let greenColor = document.getElementById('green');
+// let greenValue = document.querySelector('.adjust-rgb_green span') 
+// let blueColor = document.getElementById('blue');
+// let blueValue = document.querySelector('.adjust-rgb_blue span')
 
 
 // Onload Handelar
@@ -24,22 +24,24 @@ window.onload = ()=> {
 // Boot function collect all dom ref 
 let main = function(){   
     let randomButton = document.querySelector('.color-section_header p')
-    let inputBoxHex = document.querySelector('.input-div_input-hex input')
+    //let inputBoxHex = document.querySelector('.input-div_input-hex input')
 
     randomButton.addEventListener('click', function(){
         let color = generateColor()
-        let hexGenerator = hex(color);
-        inputBoxHex.value = hexGenerator;
-        background.style.backgroundColor =`#${inputBoxHex.value}`;
+        // let hexGenerator = hex(color);
+        // inputBoxHex.value = hexGenerator;
+        // background.style.backgroundColor =`#${inputBoxHex.value}`;
         
-        //RGB color field
-        let inputBoxRgb = document.querySelector('.input-div_input-rgb input');
-        let rgbGenerator = rgb(color);
-        inputBoxRgb.value = rgbGenerator;
-        background.style.backgroundColor = `${inputBoxRgb.value}`;
+        // //RGB color field
+        // let inputBoxRgb = document.querySelector('.input-div_input-rgb input');
+        // let rgbGenerator = rgb(color);
+        // inputBoxRgb.value = rgbGenerator;
+        // background.style.backgroundColor = `${inputBoxRgb.value}`;
         
 //  Below code is to change RGB Slider
-        rgbSlider(color);
+        //rgbSlider(color);
+
+        updateDomByClickRandomButton(color);
 
     });    
 }
@@ -57,49 +59,49 @@ let main = function(){
  * @param {string}
  * @returns {string} remove divElement if, copy color code & show 
  */
-            copyButton.addEventListener('click', ()=>{
+            // copyButton.addEventListener('click', ()=>{
    
-                if(divElement !== null){
-                    divElement.remove();
-                    divElement = null;
-                }
+            //     if(divElement !== null){
+            //         divElement.remove();
+            //         divElement = null;
+            //     }
             
-                let hexRadioBtn = document.getElementById("hex");
-                let rgbRadioBtn = document.getElementById("rgb");
+            //     let hexRadioBtn = document.getElementById("hex");
+            //     let rgbRadioBtn = document.getElementById("rgb");
             
-                if(hexRadioBtn.checked){
-                    //copy code to clipboard
-                    if(isValidHex(inputHex.value)){
-                        navigator.clipboard.writeText(`#${inputHex.value}`);
-                    }
+            //     if(hexRadioBtn.checked){
+            //         //copy code to clipboard
+            //         if(isValidHex(inputHex.value)){
+            //             navigator.clipboard.writeText(`#${inputHex.value}`);
+            //         }
             
-                    // For display copied ocde
-                    if(isValidHex(inputHex.value)){
-                        showMassege(`Copied #${inputHex.value}`)
-                      }else if(inputHex.value === ""){
-                        showMassege(`Blank`)
-                      }
-                      else{
-                        showMassege(`${inputHex.value} is not a valid code to copy`)
-                      }
-                }else if(rgbRadioBtn.checked){
-                    if(isValidHex(inputHex.value)){
-                        navigator.clipboard.writeText(inputRgb.value);
-                    }
+            //         // For display copied ocde
+            //         if(isValidHex(inputHex.value)){
+            //             showMassege(`Copied #${inputHex.value}`)
+            //           }else if(inputHex.value === ""){
+            //             showMassege(`Blank`)
+            //           }
+            //           else{
+            //             showMassege(`${inputHex.value} is not a valid code to copy`)
+            //           }
+            //     }else if(rgbRadioBtn.checked){
+            //         if(isValidHex(inputHex.value)){
+            //             navigator.clipboard.writeText(inputRgb.value);
+            //         }
                     
-                    if(isValidHex(inputHex.value)){
-                        showMassege(`Copied ${inputRgb.value}`)
-                      }else if(inputRgb.value === ""){
-                        showMassege(`Blank`)
-                      }
-                      else{
-                        showMassege(`Hex & Rgb color code is not equal`)
-                      }
-                }else{
-                    showMassege("Select Copy Mode First")
-                }
+            //         if(isValidHex(inputHex.value)){
+            //             showMassege(`Copied ${inputRgb.value}`)
+            //           }else if(inputRgb.value === ""){
+            //             showMassege(`Blank`)
+            //           }
+            //           else{
+            //             showMassege(`Hex & Rgb color code is not equal`)
+            //           }
+            //     }else{
+            //         showMassege("Select Copy Mode First")
+            //     }
                 
-            })
+            // })
 
 
 
@@ -108,21 +110,30 @@ let main = function(){
  * this function is to update background color by manual input as well as update RGB field & RGB slider
  */
 
- inputHex.addEventListener('keyup', function(){
+ inputHex.addEventListener('keyup', function(e){
     inputHex.value = inputHex.value.toUpperCase();
-  if(isValidHex(inputHex.value)){
-    background.style.backgroundColor = `#${inputHex.value}`;
-    // input.disabled = true
+    let hexColor = e.target.value;
 
-    //let inputBoxRgb = document.querySelector('.input-div-rgb input');
-    let covertColorCode = hexToRgb(inputHex.value);
-    inputRgb.value = covertColorCode;
-
+    // if(hexColor){
+    //     inputHex = hexColor.toUpperCase();
+    // }
     
+    if(isValidHex(hexColor)){
+        let color = hexToDecimel(hexColor)
+    
+        updateDomByClickRandomButton(color)
+      
+    //let inputBoxRgb = document.querySelector('.input-div-rgb input');
+    // let covertColorCode = hexToRgb(inputHex.value);
+    // inputRgb.value = covertColorCode;
+
+   
     
   }
             
 })
+
+
 
 
 
@@ -131,26 +142,46 @@ let main = function(){
  * This function is change RGB slider value & RGB input field by movement of RGB slider
  */
 
-function updateRgbCode(){
-    //Variable globally declear
-    redValue.textContent = redColor.value;
-    greenValue.textContent = greenColor.value;
-    blueValue.textContent = blueColor.value;
 
-    inputRgb.value = `rgb(${redColor.value},${greenColor.value},${blueColor.value})`
-    background.style.backgroundColor = inputRgb.value;
-
-    //To show the converted rgb code to hex input box
-    let convertColorCodeRgbToHex = rgbToHex(inputRgb.value);
-    inputHex.value = convertColorCodeRgbToHex;
-}
     
-    redColor.addEventListener('input', updateRgbCode);
-    greenColor.addEventListener('input', updateRgbCode);
-    blueColor.addEventListener('input', updateRgbCode);
+    // redColor.addEventListener('input', updateRgbCode);
+    // greenColor.addEventListener('input', updateRgbCode);
+    // blueColor.addEventListener('input', updateRgbCode);
 
 
                             // -------------Dom Functions-------------------------
+
+    function updateDomByClickRandomButton(color){
+        let hexGenerator = hex(color);
+        let rgbGenerator = rgb(color);
+
+document.querySelector('.color-section_color-picker').style.backgroundColor = `#${hexGenerator}`;
+document.querySelector(".input-div_input-hex input").value = hexGenerator;
+document.querySelector(".input-div_input-rgb input").value = rgbGenerator;
+document.getElementById('red').value = color.red;
+document.querySelector('.adjust-rgb_red span').innerText = color.red;
+document.getElementById('green').value = color.green;
+document.querySelector('.adjust-rgb_green span').innerText = color.green; 
+document.getElementById('blue').value = color.blue;
+document.querySelector('.adjust-rgb_blue span').innerText = color.blue;
+
+        
+    }
+
+
+    // function updateRgbCode(){
+    //     //Variable globally declear
+    //     redValue.textContent = redColor.value;
+    //     greenValue.textContent = greenColor.value;
+    //     blueValue.textContent = blueColor.value;
+    
+    //     inputRgb.value = `rgb(${redColor.value},${greenColor.value},${blueColor.value})`
+    //     background.style.backgroundColor = inputRgb.value;
+    
+    //     //To show the converted rgb code to hex input box
+    //     let convertColorCodeRgbToHex = rgbToHex(inputRgb.value);
+    //     inputHex.value = convertColorCodeRgbToHex;
+    // }
 
 
 /**
@@ -158,25 +189,25 @@ function updateRgbCode(){
  * @param {string} massage 
  * Function add or remove a div element dynamically in html & show a massage
  */
-let showMassege = function(massage){
-    //devElement is decleared at global area
-    divElement = document.createElement('div');
-        divElement.className = 'right copied-div-in';
-        divElement.innerHTML = massage;
-        background.appendChild(divElement);
+// let showMassege = function(massage){
+//     //devElement is decleared at global area
+//     divElement = document.createElement('div');
+//         divElement.className = 'right copied-div-in';
+//         divElement.innerHTML = massage;
+//         background.appendChild(divElement);
 
-    divElement.addEventListener('click', ()=> {
-            divElement.classList.remove('copied-div-in');
-            divElement.classList.add('copied-div-out');
+//     divElement.addEventListener('click', ()=> {
+//             divElement.classList.remove('copied-div-in');
+//             divElement.classList.add('copied-div-out');
 
-            divElement.addEventListener("animationend", ()=>{
-            divElement.remove();
-            divElement = null;
-    })
-    })
+//             divElement.addEventListener("animationend", ()=>{
+//             divElement.remove();
+//             divElement = null;
+//     })
+//     })
 
     
-}
+// }
 
 
 /**
@@ -184,18 +215,18 @@ let showMassege = function(massage){
  * @param {object} color
  * update RGB input value (Sliding value) 
  */
-        let rgbSlider = function({red,green,blue}){
-        //Variables are decleared globally
-        //below code is to change span value
-        redValue.textContent =  red;
-        greenValue.textContent = green;
-        blueValue.textContent = blue;
-        //below code is to change slider position
-        redColor.value = red;
-        greenColor.value = green;
-        blueColor.value = blue;
+    //     let rgbSlider = function({red,green,blue}){
+    //     //Variables are decleared globally
+    //     //below code is to change span value
+    //     redValue.textContent =  red;
+    //     greenValue.textContent = green;
+    //     blueValue.textContent = blue;
+    //     //below code is to change slider position
+    //     redColor.value = red;
+    //     greenColor.value = green;
+    //     blueColor.value = blue;
     
-    }
+    // }
 
                     //----------- utility Function / Utils Function-----------------
 
@@ -258,26 +289,32 @@ let showMassege = function(massage){
  * @returns {string}
  */
 
-const hexToRgb = function(code){
+const hexToDecimel = function(code){
    let hex = code.replace(/^#/, "");
 
-    let r = parseInt(hex.substring(0,2), 16);
-    let g = parseInt(hex.substring(2,4), 16);
-    let b = parseInt(hex.substring(4,6), 16);
+    let red = parseInt(hex.substring(0,2), 16);
+    let green = parseInt(hex.substring(2,4), 16);
+    let blue = parseInt(hex.substring(4,6), 16);
     
-        //below code is to change span value
-        redValue.textContent = r;
-        greenValue.textContent = g;
-        blueValue.textContent = b;
-        //below code is to change slider position
-        redColor.value = r;
-        greenColor.value = g;
-        blueColor.value = b;
+        // //below code is to change span value
+        // redValue.textContent = r;
+        // greenValue.textContent = g;
+        // blueValue.textContent = b;
+        // //below code is to change slider position
+        // redColor.value = r;
+        // greenColor.value = g;
+        // blueColor.value = b;
 
-    return `rgb(${r},${g},${b})`  
+    //return `rgb(${r},${g},${b})`  
+
+    return {
+        red,
+        green,
+        blue
+    }
 }
 
-
+console.log(hexToDecimel('ff4500'))
 
 /**
  * convert Rgb to Hex code
@@ -286,14 +323,14 @@ const hexToRgb = function(code){
  * @returns {string}
  */
 
-const rgbToHex = function(code){
-    let rgb = code.slice(4,-1).split(',');
-    let red = parseInt(rgb[0]).toString(16);
-    let green = parseInt(rgb[1]).toString(16);
-    let blue = parseInt(rgb[2]).toString(16);
+// const rgbToHex = function(code){
+//     let rgb = code.slice(4,-1).split(',');
+//     let red = parseInt(rgb[0]).toString(16);
+//     let green = parseInt(rgb[1]).toString(16);
+//     let blue = parseInt(rgb[2]).toString(16);
 
-    return `${red.padStart(2,0)}${green.padStart(2,0)}${blue.padStart(2,0)}`.toUpperCase()
-}
+//     return `${red.padStart(2,0)}${green.padStart(2,0)}${blue.padStart(2,0)}`.toUpperCase()
+// }
 
 
 
