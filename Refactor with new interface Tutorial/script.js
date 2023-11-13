@@ -294,18 +294,7 @@ const hexToDecimel = function(code){
 
     let red = parseInt(hex.substring(0,2), 16);
     let green = parseInt(hex.substring(2,4), 16);
-    let blue = parseInt(hex.substring(4,6), 16);
-    
-        // //below code is to change span value
-        // redValue.textContent = r;
-        // greenValue.textContent = g;
-        // blueValue.textContent = b;
-        // //below code is to change slider position
-        // redColor.value = r;
-        // greenColor.value = g;
-        // blueColor.value = b;
-
-    //return `rgb(${r},${g},${b})`  
+    let blue = parseInt(hex.substring(4,6), 16);  
 
     return {
         red,
@@ -314,7 +303,7 @@ const hexToDecimel = function(code){
     }
 }
 
-console.log(hexToDecimel('ff4500'))
+
 
 /**
  * convert Rgb to Hex code
@@ -323,17 +312,17 @@ console.log(hexToDecimel('ff4500'))
  * @returns {string}
  */
 
-// const rgbToHex = function(code){
-//     let rgb = code.slice(4,-1).split(',');
-//     let red = parseInt(rgb[0]).toString(16);
-//     let green = parseInt(rgb[1]).toString(16);
-//     let blue = parseInt(rgb[2]).toString(16);
+const rgbToHex = function(code){
+    let rgb = code.slice(4,-1).split(',');
+    let red = parseInt(rgb[0]).toString(16);
+    let green = parseInt(rgb[1]).toString(16);
+    let blue = parseInt(rgb[2]).toString(16);
 
-//     return `${red.padStart(2,0)}${green.padStart(2,0)}${blue.padStart(2,0)}`.toUpperCase()
-// }
+    return `${red.padStart(2,0)}${green.padStart(2,0)}${blue.padStart(2,0)}`.toUpperCase()
+}
 
 
-
+console.log(rgbToHex("rgb(0,255,10)"))
     
 
 
