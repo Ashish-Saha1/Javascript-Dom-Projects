@@ -7,12 +7,10 @@ let copyButton = document.querySelector('.change-color-section_header p');
 let inputHex = document.querySelector(".input-div_input-hex input");
 // let inputRgb = document.querySelector(".input-div_input-rgb input");
 
-// let redColor = document.getElementById('red');
-// let redValue = document.querySelector('.adjust-rgb_red span')
-// let greenColor = document.getElementById('green');
-// let greenValue = document.querySelector('.adjust-rgb_green span') 
-// let blueColor = document.getElementById('blue');
-// let blueValue = document.querySelector('.adjust-rgb_blue span')
+ let redColor = document.getElementById('red');
+ let greenColor = document.getElementById('green');
+ let blueColor = document.getElementById('blue');
+
 
 
 // Onload Handelar
@@ -144,9 +142,9 @@ let main = function(){
 
 
     
-    // redColor.addEventListener('input', updateRgbCode);
-    // greenColor.addEventListener('input', updateRgbCode);
-    // blueColor.addEventListener('input', updateRgbCode);
+    redColor.addEventListener('change', handleRgbColorSlider);
+    greenColor.addEventListener('change', handleRgbColorSlider);
+    blueColor.addEventListener('change', handleRgbColorSlider);
 
 
                             // -------------Dom Functions-------------------------
@@ -168,20 +166,22 @@ document.querySelector('.adjust-rgb_blue span').innerText = color.blue;
         
     }
 
+//This function is not match with tutorial
+    function handleRgbColorSlider(){
+        let red = parseInt(document.getElementById('red').value);
+        let green =parseInt(document.getElementById('green').value);
+        let blue = parseInt(document.getElementById('blue').value);
+ 
+    let color = {
+        red,
+        green,
+        blue
+    }
+        updateDomByClickRandomButton(color)
 
-    // function updateRgbCode(){
-    //     //Variable globally declear
-    //     redValue.textContent = redColor.value;
-    //     greenValue.textContent = greenColor.value;
-    //     blueValue.textContent = blueColor.value;
+    }
+
     
-    //     inputRgb.value = `rgb(${redColor.value},${greenColor.value},${blueColor.value})`
-    //     background.style.backgroundColor = inputRgb.value;
-    
-    //     //To show the converted rgb code to hex input box
-    //     let convertColorCodeRgbToHex = rgbToHex(inputRgb.value);
-    //     inputHex.value = convertColorCodeRgbToHex;
-    // }
 
 
 /**
@@ -255,7 +255,10 @@ document.querySelector('.adjust-rgb_blue span').innerText = color.blue;
  */
         let hex = function({red, green, blue}){
             //let {red, green, blue} = generateColor(); 
-            return  `${red.toString(16)}${green.toString(16)}${blue.toString(16)}`.padStart(6, 0).toUpperCase();
+            // return  `${red.toString(16)}${green.toString(16)}${blue.toString(16)}`.padStart(6, 0).toUpperCase();
+             return  `${red.toString(16).padStart(2,0)}${green.toString(16).padStart(2,0)}${blue.toString(16).padStart(2,0)}`.toUpperCase();
+            
+            
         }
 
 
@@ -286,7 +289,7 @@ document.querySelector('.adjust-rgb_blue span').innerText = color.blue;
  * convert hex to Rgb code
  * This function has received a hex code & converty it to RGB code
  * @param {string} code 
- * @returns {string}
+ * @returns {object}
  */
 
 const hexToDecimel = function(code){
@@ -303,26 +306,14 @@ const hexToDecimel = function(code){
     }
 }
 
+console.log(hexToDecimel('454445'))
 
 
-/**
- * convert Rgb to Hex code
- * This function has received a RGB code & converty it to Hex code
- * @param {string} code 
- * @returns {string}
- */
-
-const rgbToHex = function(code){
-    let rgb = code.slice(4,-1).split(',');
-    let red = parseInt(rgb[0]).toString(16);
-    let green = parseInt(rgb[1]).toString(16);
-    let blue = parseInt(rgb[2]).toString(16);
-
-    return `${red.padStart(2,0)}${green.padStart(2,0)}${blue.padStart(2,0)}`.toUpperCase()
-}
 
 
-console.log(rgbToHex("rgb(0,255,10)"))
+
+
+
     
 
 
