@@ -1,11 +1,11 @@
 //Global Variable
 
-//let background = document.querySelector('.color-section_color-picker');
+let background = document.querySelector('.color-section_color-picker');
 let divElement = null;
 
 let copyButton = document.querySelector('.change-color-section_header p');
 let inputHex = document.querySelector(".input-div_input-hex input");
-// let inputRgb = document.querySelector(".input-div_input-rgb input");
+let inputRgb = document.querySelector(".input-div_input-rgb input");
 
  let redColor = document.getElementById('red');
  let greenColor = document.getElementById('green');
@@ -22,23 +22,10 @@ window.onload = ()=> {
 // Boot function collect all dom ref 
 let main = function(){   
     let randomButton = document.querySelector('.color-section_header p')
-    //let inputBoxHex = document.querySelector('.input-div_input-hex input')
+ 
 
     randomButton.addEventListener('click', function(){
         let color = generateColor()
-        // let hexGenerator = hex(color);
-        // inputBoxHex.value = hexGenerator;
-        // background.style.backgroundColor =`#${inputBoxHex.value}`;
-        
-        // //RGB color field
-        // let inputBoxRgb = document.querySelector('.input-div_input-rgb input');
-        // let rgbGenerator = rgb(color);
-        // inputBoxRgb.value = rgbGenerator;
-        // background.style.backgroundColor = `${inputBoxRgb.value}`;
-        
-//  Below code is to change RGB Slider
-        //rgbSlider(color);
-
         updateDomByClickRandomButton(color);
 
     });    
@@ -111,24 +98,35 @@ let main = function(){
  inputHex.addEventListener('keyup', function(e){
     inputHex.value = inputHex.value.toUpperCase();
     let hexColor = e.target.value;
-
-    // if(hexColor){
-    //     inputHex = hexColor.toUpperCase();
-    // }
     
     if(isValidHex(hexColor)){
         let color = hexToDecimel(hexColor)
     
         updateDomByClickRandomButton(color)
-      
-    //let inputBoxRgb = document.querySelector('.input-div-rgb input');
-    // let covertColorCode = hexToRgb(inputHex.value);
-    // inputRgb.value = covertColorCode;
-
-   
-    
+       
   }
             
+})
+
+
+copyButton.addEventListener('click', function(){
+        if(divElement !== null){
+                divElement.remove();
+                divElement = null;
+            }
+   
+        if(isCopyColorModeChecked().value === 'hex'){
+            navigator.clipboard.writeText(`#${inputHex.value}`);
+            showMassege(`Copied #${inputHex.value}`)
+            console.log('Hex');
+            
+        }else{
+            navigator.clipboard.writeText(`${inputRgb.value}`);  
+            showMassege(`Copied ${inputRgb.value}`)
+            console.log('RGB');
+            
+        }
+    
 })
 
 
@@ -166,7 +164,7 @@ document.querySelector('.adjust-rgb_blue span').innerText = color.blue;
         
     }
 
-//This function is not match with tutorial
+//This function is not match with tutorial but working well
     function handleRgbColorSlider(){
         let red = parseInt(document.getElementById('red').value);
         let green =parseInt(document.getElementById('green').value);
@@ -189,44 +187,28 @@ document.querySelector('.adjust-rgb_blue span').innerText = color.blue;
  * @param {string} massage 
  * Function add or remove a div element dynamically in html & show a massage
  */
-// let showMassege = function(massage){
-//     //devElement is decleared at global area
-//     divElement = document.createElement('div');
-//         divElement.className = 'right copied-div-in';
-//         divElement.innerHTML = massage;
-//         background.appendChild(divElement);
+let showMassege = function(massage){
+    //devElement is decleared at global area
+    divElement = document.createElement('div');
+        divElement.className = 'right copied-div-in';
+        divElement.innerHTML = massage;
+        background.appendChild(divElement);
 
-//     divElement.addEventListener('click', ()=> {
-//             divElement.classList.remove('copied-div-in');
-//             divElement.classList.add('copied-div-out');
+    divElement.addEventListener('click', ()=> {
+            divElement.classList.remove('copied-div-in');
+            divElement.classList.add('copied-div-out');
 
-//             divElement.addEventListener("animationend", ()=>{
-//             divElement.remove();
-//             divElement = null;
-//     })
-//     })
+            divElement.addEventListener("animationend", ()=>{
+            divElement.remove();
+            divElement = null;
+    })
+    })
 
     
-// }
+}
 
 
-/**
- * RGB Slider function is to change RGB slider 
- * @param {object} color
- * update RGB input value (Sliding value) 
- */
-    //     let rgbSlider = function({red,green,blue}){
-    //     //Variables are decleared globally
-    //     //below code is to change span value
-    //     redValue.textContent =  red;
-    //     greenValue.textContent = green;
-    //     blueValue.textContent = blue;
-    //     //below code is to change slider position
-    //     redColor.value = red;
-    //     greenColor.value = green;
-    //     blueColor.value = blue;
-    
-    // }
+
 
                     //----------- utility Function / Utils Function-----------------
 
@@ -306,7 +288,22 @@ const hexToDecimel = function(code){
     }
 }
 
-console.log(hexToDecimel('454445'))
+
+
+function isCopyColorModeChecked(){
+    let colorModeOptions = document.getElementsByName('option');
+    let checkedValue = null;
+        for(let i=0; i<colorModeOptions.length; i++){
+            if(colorModeOptions[i].checked){
+                checkedValue = colorModeOptions[i];
+                break;
+                
+            }
+        }
+        return checkedValue
+}
+
+
 
 
 
