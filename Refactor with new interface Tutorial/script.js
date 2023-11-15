@@ -115,18 +115,20 @@ copyButton.addEventListener('click', function(){
                 divElement = null;
             }
    
-        if(isCopyColorModeChecked().value === 'hex'){
-            navigator.clipboard.writeText(`#${inputHex.value}`);
-            showMassege(`Copied #${inputHex.value}`)
-            console.log('Hex');
-            
-        }else{
-            navigator.clipboard.writeText(`${inputRgb.value}`);  
-            showMassege(`Copied ${inputRgb.value}`)
-            console.log('RGB');
-            
-        }
+       if(isCopyColorModeChecked()){
+            if(isCopyColorModeChecked().value === 'hex'){
+                navigator.clipboard.writeText(`#${inputHex.value}`);
+                showMassege(`Copied #${inputHex.value}`)
+                console.log('Hex');
+                
+            }else{
+                navigator.clipboard.writeText(`${inputRgb.value}`);  
+                showMassege(`Copied ${inputRgb.value}`)
+                console.log('RGB');
+                
+            }
     
+       }
 })
 
 
@@ -303,6 +305,7 @@ function isCopyColorModeChecked(){
         return checkedValue
 }
 
+console.log(isCopyColorModeChecked());
 
 
 
