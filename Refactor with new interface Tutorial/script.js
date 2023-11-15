@@ -116,7 +116,7 @@ copyButton.addEventListener('click', function(){
             }
    
        if(isCopyColorModeChecked()){
-            if(isCopyColorModeChecked().value === 'hex'){
+            if(isCopyColorModeChecked() === 'hex'){
                 navigator.clipboard.writeText(`#${inputHex.value}`);
                 showMassege(`Copied #${inputHex.value}`)
                 console.log('Hex');
@@ -297,7 +297,7 @@ function isCopyColorModeChecked(){
     let checkedValue = null;
         for(let i=0; i<colorModeOptions.length; i++){
             if(colorModeOptions[i].checked){
-                checkedValue = colorModeOptions[i];
+                checkedValue = colorModeOptions[i].value;
                 break;
                 
             }
