@@ -12,18 +12,18 @@ let colorModeOptions = document.getElementsByName('option');
  let greenColor = document.getElementById('green');
  let blueColor = document.getElementById('blue');
 
-//  let defaultValue = {
-//     red: 170,
-//     green: 190,
-//     blur: 220
-//  }
+ let defaultValue = {
+    red: 170,
+    green: 190,
+    blue: 220
+ }
 
 
 
 // Onload Handelar
 window.onload = ()=> {
     main();
-    //updateDomByClickRandomButton(defaultValue)
+    updateDomByClickRandomButton(defaultValue)
 }
 
 
