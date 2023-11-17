@@ -6,16 +6,24 @@ let divElement = null;
 let copyButton = document.querySelector('.change-color-section_header p');
 let inputHex = document.querySelector(".input-div_input-hex input");
 let inputRgb = document.querySelector(".input-div_input-rgb input");
+let colorModeOptions = document.getElementsByName('option');
 
  let redColor = document.getElementById('red');
  let greenColor = document.getElementById('green');
  let blueColor = document.getElementById('blue');
 
+//  let defaultValue = {
+//     red: 170,
+//     green: 190,
+//     blur: 220
+//  }
+
 
 
 // Onload Handelar
 window.onload = ()=> {
-    main()
+    main();
+    //updateDomByClickRandomButton(defaultValue)
 }
 
 
@@ -109,29 +117,36 @@ let main = function(){
 })
 
 
-copyButton.addEventListener('click', function(){
-        if(divElement !== null){
-                divElement.remove();
-                divElement = null;
-            }
    
-       if(isCopyColorModeChecked()){
-            if(isCopyColorModeChecked() === 'hex'){
-                navigator.clipboard.writeText(`#${inputHex.value}`);
-                showMassege(`Copied #${inputHex.value}`)
-                console.log('Hex');
-                
-            }else{
-                navigator.clipboard.writeText(`${inputRgb.value}`);  
-                showMassege(`Copied ${inputRgb.value}`)
-                console.log('RGB');
-                
-            }
-    
-       }
+
+copyButton.addEventListener('click', function(){
+    if(divElement !== null){
+            divElement.remove();
+            divElement = null;
+        }
+
+    const colorModeChecker = isCopyColorModeChecked(colorModeOptions)
+ 
+   if(colorModeChecker === null){
+        throw new Error('Invalid Radio Input')
+   }
+
+    if(isValidHex(inputHex.value)){
+        if(colorModeChecker === 'hex'){
+            navigator.clipboard.writeText(`#${inputHex.value}`);
+            showMassege(`Copied #${inputHex.value}`)
+        }else{
+            navigator.clipboard.writeText(`${inputRgb.value}`);  
+            showMassege(`Copied ${inputRgb.value}`)     
+    }
+    }else{
+        showMassege('Invalid Code')
+    }
+
+  
+
+
 })
-
-
 
 
 
@@ -291,13 +306,13 @@ const hexToDecimel = function(code){
 }
 
 
-
-function isCopyColorModeChecked(){
-    let colorModeOptions = document.getElementsByName('option');
+    // Variable declear globally
+function isCopyColorModeChecked(nodes){
+    
     let checkedValue = null;
-        for(let i=0; i<colorModeOptions.length; i++){
-            if(colorModeOptions[i].checked){
-                checkedValue = colorModeOptions[i].value;
+        for(let i=0; i<nodes.length; i++){
+            if(nodes[i].checked){
+                checkedValue = nodes[i].value;
                 break;
                 
             }
@@ -305,7 +320,7 @@ function isCopyColorModeChecked(){
         return checkedValue
 }
 
-console.log(isCopyColorModeChecked());
+
 
 
 
