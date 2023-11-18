@@ -19,17 +19,21 @@ let colorModeOptions = document.getElementsByName('option');
  }
 
  let colorsArr = [
-    '#fff000','#f54500','#3272D7',"#ee8B9e","#ABF7DD","#A2C8E7","#4ED5D0",
+    '#FFF000','#F54500','#3272D7',"#FF8B9F","#ABF7DD","#A2C8E7","#4ED5D0",
     "#C0A1FB","#0FD9B0","#E78F42","#918E77","#D4263A","#205D5A","#7ECD2E",
     "#9886B0","#2C068F","#B456D7","#EA670E","#A72415","#20AB65"
  ]
 
+ let presetColorParent = document.querySelector('.color-palatte');
+ let audioSound = new Audio('pop-up sound.mp3')
+ console.log(audioSound);
+ 
 
 // Onload Handelar
 window.onload = ()=> {
     main();
     updateDomByClickRandomButton(defaultValue);
-    displayColorBox(document.querySelector('.color-palatte'),colorsArr)
+    displayColorBox(presetColorParent,colorsArr)
 }
 
 
@@ -152,6 +156,20 @@ copyButton.addEventListener('click', function(){
   
 
 
+})
+
+
+presetColorParent.addEventListener('click', function(event){
+    console.log(event.target);
+    let eventTarget = event.target;
+    navigator.clipboard.writeText(eventTarget.getAttribute('data-color'))
+    if(divElement !== null){
+        divElement.remove();
+        divElement = null;
+    }
+    showMassege(`Copied ${eventTarget.getAttribute('data-color')}`)
+    audioSound.play();
+    audioSound.volume = 0.5
 })
 
 
