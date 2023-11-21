@@ -107,16 +107,19 @@ copyButton.addEventListener('click', function(){
 
 
 presetColorParent.addEventListener('click', function(event){
-    console.log(event.target);
-    let eventTarget = event.target;
-    navigator.clipboard.writeText(eventTarget.getAttribute('data-color'))
+    //below code is for shoe massage
     if(divElement !== null){
         divElement.remove();
         divElement = null;
     }
-    showMassege(`Copied ${eventTarget.getAttribute('data-color')}`)
-    audioSound.play();
-    audioSound.volume = 0.5
+    let child = event.target;
+    if(child.className === 'color-palatte_color-code'){
+        navigator.clipboard.writeText(child.getAttribute('data-color'))
+        showMassege(`Copied ${child.getAttribute('data-color')}`)
+        audioSound.play();
+        audioSound.volume = 0.7
+    }
+    
 })
 
 
