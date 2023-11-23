@@ -97,6 +97,11 @@ label{
     margin: 15px 0;
 }
 
+.change-color-section_header__right{
+    display: flex;
+    gap: 20px;
+}
+
 .copy-options{
     display: flex;
     align-items: center;

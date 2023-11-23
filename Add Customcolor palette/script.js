@@ -3,7 +3,7 @@
 let background = document.querySelector('.color-section_color-picker');
 let divElement = null;
 
-let copyButton = document.querySelector('.change-color-section_header p');
+let copyButton = document.querySelector('.copy-color-btn');
 let inputHex = document.querySelector(".input-div_input-hex input");
 let inputRgb = document.querySelector(".input-div_input-rgb input");
 let colorModeOptions = document.getElementsByName('option');
@@ -25,8 +25,11 @@ let colorModeOptions = document.getElementsByName('option');
  ]
 
  let presetColorParent = document.querySelector('.color-palatte');
+ let customColorParent = document.querySelector('.color-palatte-custom')
+ let saveBtn = document.querySelector('.save-color-btn')
  let audioSound = new Audio('pop-up sound.mp3')
- console.log(audioSound);
+
+
  
 
 // Onload Handelar
@@ -121,6 +124,18 @@ presetColorParent.addEventListener('click', function(event){
     }
     
 })
+
+
+saveBtn.addEventListener('click', function(){
+
+   let x = generateColorBox(`#${inputHex.value}`);
+  
+   console.log(x);
+   
+    customColorParent.appendChild(x)
+    
+})
+
 
 
 
