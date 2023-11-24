@@ -19,18 +19,18 @@ let colorModeOptions = document.getElementsByName('option');
  }
 
  let colorsArr = [
-    '#FFF000','#F54500','#3272D7',"#FF8B9F","#ABF7DD","#A2C8E7","#4ED5D0",
-    "#C0A1FB","#0FD9B0","#E78F42","#918E77","#D4263A","#205D5A","#7ECD2E",
-    "#9886B0","#2C068F","#B456D7","#EA670E","#A72415","#000000"
+    '#FFF000','#F54500','#3272D7',"#FF8B9F","#ABF7DD",
+    "#C0A1FB","#0FD9B0","#E78F42","#D4263A","#7ECD2E",
+    "#9886B0","#B456D7","#EA670E","#A72415","#000000"
  ]
 
  let presetColorParent = document.querySelector('.color-palatte');
  let customColorParent = document.querySelector('.color-palatte-custom')
+ let customColorArr = [];
  let saveBtn = document.querySelector('.save-color-btn')
  let audioSound = new Audio('pop-up sound.mp3')
 
 
- 
 
 // Onload Handelar
 window.onload = ()=> {
@@ -54,7 +54,7 @@ let main = function(){
 
 
 
-                                    //----------------------Event handlars----------------------
+//-----------------------------------Event handlars-----------------------------
 
             
 
@@ -127,8 +127,10 @@ presetColorParent.addEventListener('click', function(event){
 
 
 saveBtn.addEventListener('click', function(){
-   let createDivElementColorBox = generateColorBox(`#${inputHex.value}`); 
-   customColorParent.appendChild(createDivElementColorBox)
+    removeDomChildren(customColorParent)
+    customColorArr.push(`#${inputHex.value}`);
+    displayColorBox(customColorParent, customColorArr); 
+   
 })
 
 
@@ -138,8 +140,6 @@ saveBtn.addEventListener('click', function(){
  * Function for input range movement & update RGB input box
  * This function is change RGB slider value & RGB input field by movement of RGB slider
  */
-
-
     
     redColor.addEventListener('change', handleRgbColorSlider);
     greenColor.addEventListener('change', handleRgbColorSlider);
@@ -228,6 +228,19 @@ function displayColorBox(parent, color){
         let colorBox = generateColorBox(element);
         parent.appendChild(colorBox)
     });
+}
+
+/**
+ * This function is used to remove a child div element from a parent div
+ * @param {object} parent 
+ */
+function removeDomChildren(parent){
+   let child = parent.lastElementChild;
+   while(child){
+        parent.removeChild(child);
+        child = parent.lastElementChild;
+   }
+
 }
 
 
