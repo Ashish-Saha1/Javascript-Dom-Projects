@@ -127,13 +127,8 @@ presetColorParent.addEventListener('click', function(event){
 
 
 saveBtn.addEventListener('click', function(){
-
-   let x = generateColorBox(`#${inputHex.value}`);
-  
-   console.log(x);
-   
-    customColorParent.appendChild(x)
-    
+   let createDivElementColorBox = generateColorBox(`#${inputHex.value}`); 
+   customColorParent.appendChild(createDivElementColorBox)
 })
 
 
