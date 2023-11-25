@@ -246,10 +246,16 @@ function removeDomChildren(parent){
 function handlerForSaveBtn(parent, hexValue){
     return function(){
     removeDomChildren(parent)
-    customColorArr.push(`#${hexValue.value}`);
+    
+    if(isDuplicate(customColorArr, `#${hexValue.value}`)){
+        showMassege('Already Stored')
+    }else{
+        customColorArr.push(`#${hexValue.value}`)
+        console.log(customColorArr);
+    }
     displayColorBox(customColorParent, customColorArr);
     } 
-   
+      
 }
 
 
@@ -350,11 +356,23 @@ function isCopyColorModeChecked(nodes){
  * 
  * @param {Array} arr 
  */
-function isDuplicate(arr){
+// function isDuplicate(arr){
+//     let result = false;
+//     for(let i = 0; i<arr.length; i++){
+//           if(arr.indexOf(arr[i])!==i){
+//             result = true;
+//           }
+           
+//         }
+        
+//         return result;
+//     }
+
+function isDuplicate(arr, hexCode){
     let result = false;
     for(let i = 0; i<arr.length; i++){
-          if(arr.indexOf(arr[i])!==i){
-            x = true;
+          if(arr[i] === hexCode){
+            result = true;
           }
            
         }
@@ -364,7 +382,7 @@ function isDuplicate(arr){
 
 
 
-
+console.log(isDuplicate([1,1,2], 2));
 
 
 
