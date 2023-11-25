@@ -126,12 +126,7 @@ presetColorParent.addEventListener('click', function(event){
 })
 
 
-saveBtn.addEventListener('click', function(){
-    removeDomChildren(customColorParent)
-    customColorArr.push(`#${inputHex.value}`);
-    displayColorBox(customColorParent, customColorArr); 
-   
-})
+saveBtn.addEventListener('click', handlerForSaveBtn(customColorParent, inputHex))
 
 
 
@@ -146,7 +141,7 @@ saveBtn.addEventListener('click', function(){
     blueColor.addEventListener('change', handleRgbColorSlider);
 
 
-                            // -------------Dom Functions-------------------------
+// -----------------------------Dom Functions-------------------------
 
     function updateDomByClickRandomButton(color){
         let hexGenerator = hex(color);
@@ -243,10 +238,22 @@ function removeDomChildren(parent){
 
 }
 
+/**
+ * This function is to handle Enent handlar.
+ * @param {object, string} parent & inpunHexvalue 
+ * @returns {function}
+ */
+function handlerForSaveBtn(parent, hexValue){
+    return function(){
+    removeDomChildren(parent)
+    customColorArr.push(`#${hexValue.value}`);
+    displayColorBox(customColorParent, customColorArr);
+    } 
+   
+}
 
 
-
-                    //----------- utility Function / Utils Function-----------------
+//-------------------------- utility Function / Utils Function-----------------
 
 
 /**
@@ -338,6 +345,24 @@ function isCopyColorModeChecked(nodes){
         }
         return checkedValue
 }
+
+/**
+ * 
+ * @param {Array} arr 
+ */
+function isDuplicate(arr){
+    let result = false;
+    for(let i = 0; i<arr.length; i++){
+          if(arr.indexOf(arr[i])!==i){
+            x = true;
+          }
+           
+        }
+        
+        return result;
+    }
+
+
 
 
 
