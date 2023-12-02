@@ -256,6 +256,8 @@ body{
     background-repeat: no-repeat !important;
     background-position: center !important;
     background-size: 100% 100% !important;
+
+    
 }
 
 .control{
@@ -280,4 +282,9 @@ body{
 .delete-btn{
     display: none;
     margin-right: 10px;
+}
+
+.select-group{
+    display: flex;
+    flex-direction: column;
 }
