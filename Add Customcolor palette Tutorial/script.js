@@ -37,7 +37,18 @@ window.onload = ()=> {
     main();
     updateDomByClickRandomButton(defaultValue);
     displayColorBox(presetColorParent,colorsArr)
+
+   let customColorLocalStorage= localStorage.getItem('custom-colors');
+    if(customColorLocalStorage){
+        customColorArr = JSON.parse(customColorLocalStorage);
+        displayColorBox(customColorParent, customColorArr)
+    }
 }
+
+
+
+
+    
 
 
 // Boot function collect all dom ref 
@@ -121,14 +132,50 @@ presetColorParent.addEventListener('click', function(event){
         showMassege(`Copied ${child.getAttribute('data-color')}`)
         audioSound.play();
         audioSound.volume = 0.7
-    }
+
+
+        let convertHexInputToDecimel = hexToDecimel(child.getAttribute('data-color'));
+        updateDomByClickRandomButton(convertHexInputToDecimel)
+    }     
     
 })
 
 
 saveBtn.addEventListener('click', handlerForSaveBtn(customColorParent, inputHex))
 
+let uploadBtn = document.querySelector('.upload-btn');
 
+uploadBtn.addEventListener('click', function (){
+    let previewImage = document.querySelector('.preview');
+    let inputFile = document.querySelector('#input-file');
+    inputFile.click();
+
+    inputFile.addEventListener('change', function(event){
+        let file = event.target.files[0]
+  
+        
+        let urlLink = URL.createObjectURL(file);
+        
+        previewImage.style.background = `url(${urlLink})`
+        let body = document.getElementsByTagName('body')[0]
+        body.style.background = `url(${urlLink})`
+        
+        let deleteBtn = document.querySelector('.delete-btn');
+        deleteBtn.style.display = 'block';
+
+        deleteBtn.addEventListener('click', function(){
+            // previewImage.style.removeProperty('background') 
+            // body.style.removeProperty('background') 
+            // deleteBtn.style.display = 'none';
+            previewImage.style.background = null;
+            body.style.background = null;
+            deleteBtn.style.display = 'none';
+        })
+    })
+    
+    
+
+})
 
 
 /**
@@ -239,24 +286,37 @@ function removeDomChildren(parent){
 }
 
 /**
- * This function is to handle Enent handlar.
+ * This function is to handle Enent handlar. remove duplicate color
  * @param {object, string} parent & inpunHexvalue 
  * @returns {function}
  */
 function handlerForSaveBtn(parent, hexValue){
     return function(){
-    removeDomChildren(parent)
-    
-    if(isDuplicate(customColorArr, `#${hexValue.value}`)){
-        showMassege('Already Stored')
-    }else{
-        customColorArr.push(`#${hexValue.value}`)
-        console.log(customColorArr);
-    }
-    displayColorBox(customColorParent, customColorArr);
+        if(customColorArr.includes(`#${hexValue.value}`)){
+                return;
+        }
+            customColorArr.push(`#${hexValue.value}`) 
+            
+            if(customColorArr.length > 15){
+                console.log(customColorArr.slice(1));
+                customColorArr = customColorArr.slice(1)
+                
+            }
+            
+        localStorage.setItem('custom-colors', JSON.stringify(customColorArr))
+        
+        
+        //removeDomChildren for remove children from parent 
+        removeDomChildren(parent)
+        displayColorBox(customColorParent, customColorArr);
+
+       
+       
     } 
       
 }
+
+
 
 
 //-------------------------- utility Function / Utils Function-----------------
@@ -368,21 +428,21 @@ function isCopyColorModeChecked(nodes){
 //         return result;
 //     }
 
-function isDuplicate(arr, hexCode){
-    let result = false;
-    for(let i = 0; i<arr.length; i++){
-          if(arr[i] === hexCode){
-            result = true;
-          }
+// function isDuplicate(arr, hexCode){
+//     let result = false;
+//     for(let i = 0; i<arr.length; i++){
+//           if(arr[i] === hexCode){
+//             result = true;
+//           }
            
-        }
+//         }
         
-        return result;
-    }
+//         return result;
+//     }
 
 
 
-console.log(isDuplicate([1,1,2], 2));
+// console.log(isDuplicate([1,1,2], 2));
 
 
 
