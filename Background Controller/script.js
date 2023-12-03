@@ -13,7 +13,9 @@ let colorModeOptions = document.getElementsByName('option');
  let blueColor = document.getElementById('blue');
  let uploadBtn = document.querySelector('.upload-btn');
  let previewImage = document.querySelector('.preview');
- 
+ let inputFile = document.querySelector('#input-file');
+ let deleteBtn = document.querySelector('.delete-btn');
+ let bodyArea = document.getElementsByTagName('body')[0];
 
  let defaultValue = {
     red: 170,
@@ -148,34 +150,72 @@ saveBtn.addEventListener('click', handlerForSaveBtn(customColorParent, inputHex)
 
 
 
-uploadBtn.addEventListener('click', function (){
+// uploadBtn.addEventListener('click', function (){
             
-            let inputFile = document.querySelector('#input-file');
+//             let inputFile = document.querySelector('#input-file');
+//             inputFile.click();
+
+//     inputFile.addEventListener('change', function(event){
+//             let file = event.target.files[0]
+//             let urlLink = URL.createObjectURL(file);
+            
+//             previewImage.style.background = `url(${urlLink})`
+//             let bodyArea = document.getElementsByTagName('body')[0]
+//             bodyArea.style.background = `url(${urlLink})`
+        
+//             let deleteBtn = document.querySelector('.delete-btn');
+//             deleteBtn.style.display = 'block';
+//             document.querySelector('.bg-controller').style.display = 'block'
+//     deleteBtn.addEventListener('click', function(){
+//             previewImage.style.removeProperty('background') 
+//             bodyArea.style.removeProperty('background') 
+//             deleteBtn.style.display = 'none';
+//             inputFile.value = null;
+//             document.querySelector('.bg-controller').style.display = 'none'
+//         })
+//     })
+    
+    
+
+// })
+
+
+uploadBtn.addEventListener('click', function (){
+                 
             inputFile.click();
 
-    inputFile.addEventListener('change', function(event){
-            let file = event.target.files[0]
-            let urlLink = URL.createObjectURL(file);
-            
-            previewImage.style.background = `url(${urlLink})`
-            let bodyArea = document.getElementsByTagName('body')[0]
-            bodyArea.style.background = `url(${urlLink})`
-        
-            let deleteBtn = document.querySelector('.delete-btn');
-            deleteBtn.style.display = 'block';
-
-    deleteBtn.addEventListener('click', function(){
-            previewImage.style.removeProperty('background') 
-            bodyArea.style.removeProperty('background') 
-            deleteBtn.style.display = 'none';
-            inputFile.value = null;
-        
         })
-    })
+
+inputFile.addEventListener('change', handleInputFile(previewImage,bodyArea,deleteBtn))
+
+deleteBtn.addEventListener('click', handleDeleteBtn(previewImage,bodyArea,deleteBtn,inputFile))
+    
     
     
 
-})
+        function handleInputFile(previewImage,bodyArea,deleteBtn){
+            return function(event){
+                let file = event.target.files[0]
+                let urlLink = URL.createObjectURL(file); 
+                previewImage.style.background = `url(${urlLink})`
+                bodyArea.style.background = `url(${urlLink})`
+        
+                deleteBtn.style.display = 'block';
+                document.querySelector('.bg-controller').style.display = 'block'
+            }
+
+        }
+
+        function handleDeleteBtn(previewImage,bodyArea,deleteBtn,inputFile){
+            return function(){
+                previewImage.style.removeProperty('background') 
+                bodyArea.style.removeProperty('background') 
+                deleteBtn.style.display = 'none';
+                inputFile.value = null;
+                document.querySelector('.bg-controller').style.display = 'none'
+            }
+        }
+
 
 
 /**
@@ -186,6 +226,13 @@ uploadBtn.addEventListener('click', function (){
     redColor.addEventListener('change', handleRgbColorSlider);
     greenColor.addEventListener('change', handleRgbColorSlider);
     blueColor.addEventListener('change', handleRgbColorSlider);
+
+
+//  Function / Event handaler for control background through background preview
+    document.getElementById('bg-size').addEventListener('change', handleBackgroundControl)
+    document.getElementById('bg-repeat').addEventListener('change', handleBackgroundControl)
+    document.getElementById('bg-position').addEventListener('change', handleBackgroundControl)
+    document.getElementById('bg-attachment').addEventListener('change', handleBackgroundControl)
 
 
 // -----------------------------Dom Functions-------------------------
@@ -318,6 +365,21 @@ function handlerForSaveBtn(parent, hexValue){
 
 
 
+/**
+ * Handle this background controller through change this dom element
+ */
+
+function handleBackgroundControl(){
+    document.body.style.backgroundSize = document.getElementById('bg-size').value;
+    document.body.style.backgroundRepeat = document.getElementById('bg-repeat').value;
+    document.body.style.backgroundPosition = document.getElementById('bg-position').value;
+    document.body.style.backgroundAttachment = document.getElementById('bg-attachment').value;
+    
+ }
+
+
+
+
 
 //-------------------------- utility Function / Utils Function-----------------
 
@@ -412,23 +474,9 @@ function isCopyColorModeChecked(nodes){
         return checkedValue
 }
 
-document.getElementById('bg-size').addEventListener('change', handleBackgroundControl)
-document.getElementById('bg-repeat').addEventListener('change', handleBackgroundControl)
-document.getElementById('bg-position').addEventListener('change', handleBackgroundControl)
-document.getElementById('bg-attachment').addEventListener('change', handleBackgroundControl)
 
-function handleBackgroundControl(){
-   document.body.style.backgroundSize = document.getElementById('bg-size').value;
-   document.body.style.backgroundRepeat = document.getElementById('bg-repeat').value;
-   document.body.style.backgroundPosition = document.getElementById('bg-position').value;
-   document.body.style.backgroundAttachment = document.getElementById('bg-attachment').value;
 
-   console.log(document.body.style.backgroundSize = document.getElementById('bg-size').value,
-   document.body.style.backgroundRepeat = document.getElementById('bg-repeat').value,
-   document.body.style.backgroundPosition = document.getElementById('bg-position').value,
-   document.body.style.backgroundAttachment = document.getElementById('bg-attachment').value)
-   
-}
+
 
 
 
