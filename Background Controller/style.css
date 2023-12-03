@@ -253,9 +253,9 @@ label{
 }
 
 body{
-    background-repeat: no-repeat !important;
-    background-position: center !important;
-    background-size: 100% 100% !important;
+    background-repeat: no-repeat ;
+    background-position: center ;
+    background-size: 100% 100% ;
 
     
 }
@@ -287,4 +287,14 @@ body{
 .select-group{
     display: flex;
     flex-direction: column;
+    margin-bottom: 10px;
+}
+.select-group label{
+    font-size: 13px;
+    margin-bottom: 3px;
+    font-weight: 600;
+}
+
+.bg-controller{
+    margin-left: 20px;
 }

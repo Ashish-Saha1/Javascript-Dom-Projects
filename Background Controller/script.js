@@ -12,7 +12,9 @@ let colorModeOptions = document.getElementsByName('option');
  let greenColor = document.getElementById('green');
  let blueColor = document.getElementById('blue');
  let uploadBtn = document.querySelector('.upload-btn');
+ let previewImage = document.querySelector('.preview');
  
+
  let defaultValue = {
     red: 170,
     green: 190,
@@ -147,7 +149,7 @@ saveBtn.addEventListener('click', handlerForSaveBtn(customColorParent, inputHex)
 
 
 uploadBtn.addEventListener('click', function (){
-            let previewImage = document.querySelector('.preview');
+            
             let inputFile = document.querySelector('#input-file');
             inputFile.click();
 
@@ -156,15 +158,15 @@ uploadBtn.addEventListener('click', function (){
             let urlLink = URL.createObjectURL(file);
             
             previewImage.style.background = `url(${urlLink})`
-            let body = document.getElementsByTagName('body')[0]
-            body.style.background = `url(${urlLink})`
+            let bodyArea = document.getElementsByTagName('body')[0]
+            bodyArea.style.background = `url(${urlLink})`
         
             let deleteBtn = document.querySelector('.delete-btn');
             deleteBtn.style.display = 'block';
 
     deleteBtn.addEventListener('click', function(){
             previewImage.style.removeProperty('background') 
-            body.style.removeProperty('background') 
+            bodyArea.style.removeProperty('background') 
             deleteBtn.style.display = 'none';
             inputFile.value = null;
         
@@ -410,43 +412,25 @@ function isCopyColorModeChecked(nodes){
         return checkedValue
 }
 
-/**
- * 
- * @param {Array} arr 
- */
-// function isDuplicate(arr){
-//     let result = false;
-//     for(let i = 0; i<arr.length; i++){
-//           if(arr.indexOf(arr[i])!==i){
-//             result = true;
-//           }
-           
-//         }
-        
-//         return result;
-//     }
+document.getElementById('bg-size').addEventListener('change', handleBackgroundControl)
+document.getElementById('bg-repeat').addEventListener('change', handleBackgroundControl)
+document.getElementById('bg-position').addEventListener('change', handleBackgroundControl)
+document.getElementById('bg-attachment').addEventListener('change', handleBackgroundControl)
 
-// function isDuplicate(arr, hexCode){
-//     let result = false;
-//     for(let i = 0; i<arr.length; i++){
-//           if(arr[i] === hexCode){
-//             result = true;
-//           }
-           
-//         }
-        
-//         return result;
-//     }
+function handleBackgroundControl(){
+   document.body.style.backgroundSize = document.getElementById('bg-size').value;
+   document.body.style.backgroundRepeat = document.getElementById('bg-repeat').value;
+   document.body.style.backgroundPosition = document.getElementById('bg-position').value;
+   document.body.style.backgroundAttachment = document.getElementById('bg-attachment').value;
+
+   console.log(document.body.style.backgroundSize = document.getElementById('bg-size').value,
+   document.body.style.backgroundRepeat = document.getElementById('bg-repeat').value,
+   document.body.style.backgroundPosition = document.getElementById('bg-position').value,
+   document.body.style.backgroundAttachment = document.getElementById('bg-attachment').value)
+   
+}
 
 
 
-// console.log(isDuplicate([1,1,2], 2));
-
-
-
-
-
-
-    
 
 
