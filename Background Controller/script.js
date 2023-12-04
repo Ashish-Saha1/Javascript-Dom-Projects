@@ -193,28 +193,7 @@ deleteBtn.addEventListener('click', handleDeleteBtn(previewImage,bodyArea,delete
     
     
 
-        function handleInputFile(previewImage,bodyArea,deleteBtn){
-            return function(event){
-                let file = event.target.files[0]
-                let urlLink = URL.createObjectURL(file); 
-                previewImage.style.background = `url(${urlLink})`
-                bodyArea.style.background = `url(${urlLink})`
-        
-                deleteBtn.style.display = 'block';
-                document.querySelector('.bg-controller').style.display = 'block'
-            }
-
-        }
-
-        function handleDeleteBtn(previewImage,bodyArea,deleteBtn,inputFile){
-            return function(){
-                previewImage.style.removeProperty('background') 
-                bodyArea.style.removeProperty('background') 
-                deleteBtn.style.display = 'none';
-                inputFile.value = null;
-                document.querySelector('.bg-controller').style.display = 'none'
-            }
-        }
+      
 
 
 
@@ -378,6 +357,31 @@ function handleBackgroundControl(){
  }
 
 
+ // below function is a helper function of upload button  handler
+ // this function process an image & create a url link for input file which is hidden by css
+ function handleInputFile(previewImage,bodyArea,deleteBtn){
+    return function(event){
+        let file = event.target.files[0]
+        let urlLink = URL.createObjectURL(file); 
+        previewImage.style.background = `url(${urlLink})`
+        bodyArea.style.background = `url(${urlLink})`
+
+        deleteBtn.style.display = 'block';
+        document.querySelector('.bg-controller').style.display = 'block'
+    }
+
+}
+
+// below function is a helper function of upload button  handler
+function handleDeleteBtn(previewImage,bodyArea,deleteBtn,inputFile){
+    return function(){
+        previewImage.style.removeProperty('background') 
+        bodyArea.style.removeProperty('background') 
+        deleteBtn.style.display = 'none';
+        inputFile.value = null;
+        document.querySelector('.bg-controller').style.display = 'none'
+    }
+}
 
 
 
