@@ -1,5 +1,4 @@
-let quoteGenerateBtn = document.querySelector('.quote-div_head button');
-let showQuote = document.querySelector('.quote-div_show p')
+
 let quotesArray = [
     "The greatest glory in living lies not in never falling, but in rising every time we fall. -Nelson Mandela",
 
@@ -29,20 +28,35 @@ let quotesArray = [
 
     "Do not go where the path may lead, go instead where there is no path and leave a trail. -Ralph Waldo Emerson",
 
-    "Darkness cannot drive out darkness: only light can do that. Hate cannot drive out hate: only love can do that. -Martin Luther King Jr."
+    "In this life we cannot do great things. We can only do small things with great love. -Mother Teresa"
 
 ]
 
 
-    quoteGenerateBtn.addEventListener('click', function(){
-        let len = quotesArray.length;
-        let randomNumber = Math.floor(Math.random()* len);
-        console.log(quotesArray[randomNumber], randomNumber);
-        showQuote.innerHTML = `"${quotesArray[randomNumber]}"`;
-        
-        
-        
-    })
+    window.onload = function(){
+        main()
+    }
+
+    function main(){
+        let quoteGenerateBtn = document.querySelector('.quote-div_head button');
+        let showQuote = document.querySelector('.quote-div_show p')
+            showQuote.innerHTML = quotesArray[0];
+        quoteGenerateBtn.addEventListener('click', handleQuoteGenerate(showQuote))
+    }
+
+
+
+
+    //
+
+   function handleQuoteGenerate(showQuote){
+        return function(){
+            let len = quotesArray.length;
+            let randomNumber = Math.floor(Math.random()* len);
+            console.log(quotesArray[randomNumber], randomNumber);
+            showQuote.innerHTML = `"${quotesArray[randomNumber]}"`;            
+        }        
+    }
 
     //console.log(Math.round(Math.random(10)*10));
     
