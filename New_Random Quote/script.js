@@ -47,8 +47,14 @@ let quotesArray = [
 
 
 
-    //
-
+   
+        /**
+         * This function is to handle Random quote generate
+         * @param {*} showQuote 
+         * @returns {function name(showQuote) {
+            
+         }}
+         */
    function handleQuoteGenerate(showQuote){
         return function(){
             let len = quotesArray.length;
