@@ -11,10 +11,7 @@ window.onload = function(){
    let decrementInput = document.getElementById('decrement-input');
    let incrementBtn = document.querySelector('.increment-btn');
    let decrementBtn = document.querySelector('.decrement-btn');
-    
-
-    //console.log(parseInt(result.innerHTML) + 15);
-    //console.log(parseInt(result.innerHTML) + parseInt(incrementInput.value));
+       
     
     incrementBtn.addEventListener('click', function(){       
         if(incrementInput.value === ""){
@@ -37,12 +34,12 @@ window.onload = function(){
             }
         }
         
-        
-            
-       
-        
     })
 
+
+
+
+    
  }
 
 
