@@ -55,7 +55,7 @@ window.onload = function(){
         let decrement = parseInt(decrementInput.value);
         counter -= decrement;
         display(resultShow) 
-        
+        console.log(display(resultShow))
     })
 
     
