@@ -54,6 +54,17 @@ body{
     border-radius: 3px;
 }
 
+.show-message{
+
+    display: none;
+}
+
+.show-message span{
+
+    font-weight: 600;
+    color: black;
+}
+
 .form-body_output{
     margin-top: 25px;
     font-size: 15px;
