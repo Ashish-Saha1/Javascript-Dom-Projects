@@ -55,8 +55,23 @@ window.onload = function(){
         let decrement = parseInt(decrementInput.value);
         counter -= decrement;
         display(resultShow) 
-        console.log(display(resultShow))
+       
     })
+
+
+    incrementInput.addEventListener('keyup', function(event){
+           if(event.target.value > 100){
+                event.target.value = 100;
+           }
+            
+    })
+
+    decrementInput.addEventListener('keyup', function(event){
+        if(event.target.value > 100){
+             event.target.value = 100;
+        }
+         
+ })
 
     
  }
@@ -65,7 +80,10 @@ window.onload = function(){
 
 
  function display(resultShow){
-    let finaleResult = counter;
+     let finaleResult = counter;
+        if(counter < 0){
+            counter = 0
+        }
         if(counter < 10){           
             finaleResult = `0${counter}`          
         }
