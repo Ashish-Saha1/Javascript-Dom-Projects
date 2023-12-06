@@ -14,6 +14,7 @@ window.onload = function(){
    let incrementBtn = document.querySelector('.increment-btn');
    let decrementBtn = document.querySelector('.decrement-btn');
        
+
     
     // incrementBtn.addEventListener('click', function(){       
     //     if(incrementInput.value === ""){
@@ -43,9 +44,16 @@ window.onload = function(){
     display(resultShow)
 
     incrementBtn.addEventListener('click', function(){
-        let increment = parseInt(incrementInput.value);
-        counter += increment;
-        display(resultShow) 
+         let increment = parseInt(incrementInput.value);
+        if(isNaN(increment) === false){
+            counter += increment;
+            display(resultShow) 
+        }
+        else{
+            incrementInput.value = 1;
+        }
+       
+        console.log(isNaN(increment) )
         
     })
 
@@ -53,8 +61,14 @@ window.onload = function(){
 
     decrementBtn.addEventListener('click', function(){
         let decrement = parseInt(decrementInput.value);
-        counter -= decrement;
-        display(resultShow) 
+        if(isNaN(decrement) === false){
+            counter -= decrement;
+            display(resultShow)
+        }
+        else{
+            decrementInput.value = 1;
+        }
+         
        
     })
 
@@ -81,6 +95,7 @@ window.onload = function(){
 
  function display(resultShow){
      let finaleResult = counter;
+        
         if(counter < 0){
             counter = 0
         }
