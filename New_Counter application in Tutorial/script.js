@@ -15,32 +15,6 @@ window.onload = function(){
    let decrementBtn = document.querySelector('.decrement-btn');
        
 
-    
-    // incrementBtn.addEventListener('click', function(){       
-    //     if(incrementInput.value === ""){
-    //         alert('First input any number')
-    //     }else{
-    //         result.innerHTML = parseInt(incrementInput.value) + parseInt(result.innerHTML)
-    //     }
-        
-    // })
-
-
-    // decrementBtn.addEventListener('click', function(){       
-    //     if(decrementInput.value === ""){
-    //         alert('First input any number')
-    //     }else{
-    //         if(parseInt(result.innerHTML) - parseInt(decrementInput.value) < 0){
-    //             result.innerHTML = 0;
-    //         }else{
-    //             result.innerHTML = parseInt(result.innerHTML) - parseInt(decrementInput.value)
-    //         }
-    //     }
-        
-    // })
-
-
-
     display(resultShow)
 
     incrementBtn.addEventListener('click', function(){
