@@ -1,0 +1,28 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: lightgrey;
+}
+
+.container{
+    width: 450px;
+    background-color: #fff;
+    margin: 10px auto;
+    padding: 20px 10px;
+    box-shadow: 2px 2px 5px rgb(194, 194, 194);
+    border-radius: 5px;
+}
+
+.container_header{
+    text-align: center;
+    border-bottom: 1px solid lightgrey ;
+    padding-bottom: 5px;
+    margin-bottom: 15px ;
+}
+
+
+
