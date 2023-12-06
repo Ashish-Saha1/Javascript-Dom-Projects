@@ -73,19 +73,9 @@ window.onload = function(){
     })
 
 
-    incrementInput.addEventListener('keyup', function(event){
-           if(event.target.value > 100){
-                event.target.value = 100;
-           }
-            
-    })
+    incrementInput.addEventListener('keyup', handleInputLimit)
 
-    decrementInput.addEventListener('keyup', function(event){
-        if(event.target.value > 100){
-             event.target.value = 100;
-        }
-         
- })
+    decrementInput.addEventListener('keyup', handleInputLimit)
 
     
  }
@@ -106,3 +96,13 @@ window.onload = function(){
     }
 
  
+    function handleInputLimit(event){
+        if(event.target.value > 100){
+             event.target.value = 100;
+        }
+
+        if(event.target.value < 0){
+            event.target.value = 0;
+    }
+         
+ }
