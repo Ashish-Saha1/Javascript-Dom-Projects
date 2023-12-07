@@ -55,6 +55,11 @@ body{
     height: 25px;
 }
 
+.middle-input{
+    font-size: 25px;
+    font-weight: 600;
+}
+
 .third-div{
     margin-top: 15px;
     background-color: rgb(224, 224, 224);
