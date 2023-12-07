@@ -24,5 +24,51 @@ body{
     margin-bottom: 15px ;
 }
 
+#category-select{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 25px;
+    margin-top: 5px;
+    
+}
+
+.second-div{
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    gap: 10px;
+}
+
+
+
+.left-input input, .right-input input{
+    height: 30px;
+    font-size: 20px;
+    text-align: center;
+    width: 100%;
+}
+
+#left-input_select, #right-input_select{
+    display: flex;
+    width: 100%;
+    height: 25px;
+}
+
+.middle-input{
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.third-div{
+    margin-top: 15px;
+    background-color: rgb(224, 224, 224);
+    border-radius: 3px;
+    padding: 5px;
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+    text-align: justify;
+}
 
 
