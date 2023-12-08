@@ -8,7 +8,7 @@ window.onload = function(){
 }
 
  function main(){
-    const options = {
+    let converter = {
         length:{
             name : "Length"
             },
@@ -23,45 +23,70 @@ window.onload = function(){
 
         dataTransferRate:{
             name: "Data Transfer Rate"
-            }
+            },
+
+        area: {
+            name: 'Area'
+        },
+
+        speed: {
+            name: "Speed"
+        }
+
     }
-       
+
+  
     
     let selectCategoryFirst = document.getElementById('category-select');
 
-
-    addOptions(selectCategoryFirst, options);
+    deletePreviousOptionsFromHtml(selectCategoryFirst)
        
+
+    // addOptions(selectCategoryFirst, converter);
+
+        let converterKeys = Object.keys(converter).sort();
+        
+        converterKeys.forEach(item=>{
+                //below function call like an object because option.text is like an object
+            addOptions(selectCategoryFirst, {value: item, text: converter[item].name});
+            
+        })
+
+
+
+        
     }
 
 
-  
-    // function addOptions(parent, option){
-    //     let optionsNameArr = Object.values(option);
-    //     let optionsValueArr = Object.keys(option);
-
-    //     for(let optionName of optionsNameArr){
-    //         let createOptionDomElement = document.createElement('option');
-    //         createOptionDomElement.innerHTML = optionName.name;
-    //         parent.appendChild(createOptionDomElement)
-    //         }
-    //         //createOptionDomElement.setAttribute('values', Object.keys(option))  
-          
-    //     }
-    
    
-
+/**
+ * 1st obj is a parent div element
+ * 2nd obj is a option element of select category
+ * @param {object} parent 
+ * @param {object} option 
+ * function descripption -
+ * The function is to add an option element dynamically into a select element
+ * option parameter is call like an object such as option.text
+ */
     function addOptions(parent, option){
-        let optionsNameArr = Object.values(option);
-        let optionsValueArr = Object.keys(option);
+           
+        let createOptionDomElement = document.createElement('option');
+            createOptionDomElement.innerText = option.text;
 
-        optionsNameArr.map(value, index, arr){
-            console.log(value);
-            
-        }
+            createOptionDomElement.setAttribute('values', option.value)
+            parent.appendChild(createOptionDomElement)
           
         }
 
 
 
- 
+    function deletePreviousOptionsFromHtml(parent){
+        let child = parent.lastElementChild;
+   
+       while(child){
+            parent.removeChild(child);
+            child =parent.lastElementChild;
+       }
+
+    }
+       
