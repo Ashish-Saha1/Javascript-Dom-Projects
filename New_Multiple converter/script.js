@@ -28,7 +28,8 @@ window.onload = function(){
             },
 
         time:{
-            name: "Time"
+            name: "Time",
+
             },
 
         weight: {
@@ -40,7 +41,16 @@ window.onload = function(){
             },
 
         area: {
-            name: 'Area'
+            name: 'Area',
+            units: {
+                squareKilometer:{ name: "Square Kilometer"},
+                squareMeter: {name: "Square Meter"},
+                squareMile: {name: "Square Mile"},
+                squareyard: {name: "Square Yard"},
+                squareFoot: {name: "Square Foot"},
+                hectare: {name: "Hectare"},
+                acre: {name: "Acre"}
+            }
         },
 
         speed: {
@@ -49,15 +59,7 @@ window.onload = function(){
 
     }
 
-    // const area = {
-    //     squareKilometer:{ name: "Square Kilometer"},
-    //     squareMeter: {name: "Square Meter"},
-    //     squareMile: {name: "Square Mile"},
-    //     squareyard: {name: "Square Yard"},
-    //     squareFoot: {name: "Square Foot"},
-    //     hectare: {name: "Hectare"},
-    //     acre: {name: "Acre"}
-    // }
+   
 
    
 
@@ -75,25 +77,20 @@ window.onload = function(){
 
 
 
-
+        // Left select options
       let subOptionsLeftInput = document.getElementById('left-input_select')
-        console.log(converter.length.units)
-        console.log(Object.values(converter.length.units))
 
+        let selectCategoryFirstValue = selectCategoryFirst.value; 
+        
+        deletePreviousOptionsFromHtml(subOptionsLeftInput);
+        l
+    
 
+    //     convertUnits.forEach(item=>{
+    //     addOptions(subOptionsLeftInput, {value: item, text: convertUnits[item]});
+    //     console.log(convertUnits.item);
+    // })
 
-        parent.addEventListener('change', function(event){
-  
-            if(event.target.value === "length"){
-                lengthKeys.forEach(item=>{
-                addOptions(subOptionsLeftInput, {value: item, text: length[item].name});
-                
-            })
-            }
-            
-            
-            
-        })
 
 
 
