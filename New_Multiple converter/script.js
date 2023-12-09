@@ -116,20 +116,20 @@ window.onload = function(){
         let subOptionsLeftInput = document.getElementById('left-input_select')
         let selectCategoryFirstValue = selectCategoryFirst.value; 
         let units = converter[selectCategoryFirstValue].units;
-        let leftOptions =  Object.keys(units) ;
-   
+        let unitOptions =  Object.keys(units) ;
+  
         deletePreviousOptionsFromHtml(subOptionsLeftInput);
 
-       leftOptions.forEach(item=>{
+        unitOptions.forEach(item=>{
         addOptions(subOptionsLeftInput, {value: item, text: units[item].name});
-       })
+        })
 
         
 
         let subOptionsRightInput = document.getElementById('right-input_select')
         deletePreviousOptionsFromHtml(subOptionsRightInput);
 
-       leftOptions.forEach(item=>{
+       unitOptions.forEach(item=>{
         addOptions(subOptionsRightInput, {value: item, text: units[item].name});
        })
 
@@ -139,30 +139,30 @@ window.onload = function(){
 
 
 
-        // Left select options
+        // Left select options for default value options set
         let subOptionsLeftInput = document.getElementById('left-input_select')
         let selectCategoryFirstValue = selectCategoryFirst.value; 
         let units = converter[selectCategoryFirstValue].units;
-        let leftOptions =  Object.keys(units) ;
+        let unitOptions =  Object.keys(units) ;
         
         deletePreviousOptionsFromHtml(subOptionsLeftInput);
 
-       leftOptions.forEach(item=>{
+        unitOptions.forEach(item=>{
         addOptions(subOptionsLeftInput, {value: item, text: units[item].name});
-       })
+        })
 
         
-        // Right select options
+        // Right select options for default value options set
 
         let subOptionsRightInput = document.getElementById('right-input_select')
         deletePreviousOptionsFromHtml(subOptionsRightInput);
 
-       leftOptions.forEach(item=>{
+        unitOptions.forEach(item=>{
         addOptions(subOptionsRightInput, {value: item, text: units[item].name});
         
        })
         //to change the order of subOptionsRightInput children 
-      subOptionsRightInput.value = subOptionsRightInput[1].value;
+        subOptionsRightInput.value = subOptionsRightInput[1].value;
       
    
 
