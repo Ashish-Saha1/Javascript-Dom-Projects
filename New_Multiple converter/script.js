@@ -29,15 +29,42 @@ window.onload = function(){
 
         time:{
             name: "Time",
-
+            units:  {
+                nanosecond:{ name: "Nanosecond"},
+                microsecond: {name: "Microsecond"},
+                millisecond: {name: "Millisecond"},
+                second: {name: "Second"},
+                minute: {name: "Minute"},
+                hour: {name: "Hour"},
+               
+            }
             },
 
-        weight: {
-            name: "Weight"
+        mass: {
+            name: "mass",
+            units:  {
+                tonne:{ name: "Tonne"},
+                kilogram: {name: "Kilogram"},
+                gram: {name: "Gram"},
+                milligram: {name: "Milligram"},
+                microgram: {name: "Microgram"},
+                pound: {name: "Pound"},
+                ounce: {name: "Ounce"},
+               
+            }
             },
 
         dataTransferRate:{
-            name: "Data Transfer Rate"
+            name: "Data Transfer Rate",
+            units:  {
+                bitePerS:{ name: "Bit per second"},
+                kilobitePerS: {name: "Kilobite per second"},
+                megabitePerS: {name: "Megabyte per second"},
+                gigabitePerS: {name: "Gigabyte per second"},
+                terabitePerS: {name: "Terabyte per second"},
+               
+            }
+            
             },
 
         area: {
@@ -54,7 +81,15 @@ window.onload = function(){
         },
 
         speed: {
-            name: "Speed"
+            name: "Speed",
+            units: {
+                milePerS:{ name: "Mile per hour"},
+                footPerS: {name: "Foot per second"},
+                meterePerS: {name: "Meter per second"},
+                kilometerePerS: {name: "Kilometer per hour"},
+                knot: {name: "Knot"},
+         
+            }
         }
 
     }
@@ -76,20 +111,60 @@ window.onload = function(){
         })
 
 
+        selectCategoryFirst.addEventListener('change',function(){
+        
+        let subOptionsLeftInput = document.getElementById('left-input_select')
+        let selectCategoryFirstValue = selectCategoryFirst.value; 
+        let units = converter[selectCategoryFirstValue].units;
+        let leftOptions =  Object.keys(units) ;
+   
+        deletePreviousOptionsFromHtml(subOptionsLeftInput);
+
+       leftOptions.forEach(item=>{
+        addOptions(subOptionsLeftInput, {value: item, text: units[item].name});
+       })
+
+        
+
+        let subOptionsRightInput = document.getElementById('right-input_select')
+        deletePreviousOptionsFromHtml(subOptionsRightInput);
+
+       leftOptions.forEach(item=>{
+        addOptions(subOptionsRightInput, {value: item, text: units[item].name});
+       })
+
+       subOptionsRightInput.value = subOptionsRightInput[1].value;
+        })
+
+
+
 
         // Left select options
-      let subOptionsLeftInput = document.getElementById('left-input_select')
-
+        let subOptionsLeftInput = document.getElementById('left-input_select')
         let selectCategoryFirstValue = selectCategoryFirst.value; 
+        let units = converter[selectCategoryFirstValue].units;
+        let leftOptions =  Object.keys(units) ;
         
         deletePreviousOptionsFromHtml(subOptionsLeftInput);
-        l
-    
 
-    //     convertUnits.forEach(item=>{
-    //     addOptions(subOptionsLeftInput, {value: item, text: convertUnits[item]});
-    //     console.log(convertUnits.item);
-    // })
+       leftOptions.forEach(item=>{
+        addOptions(subOptionsLeftInput, {value: item, text: units[item].name});
+       })
+
+        
+        // Right select options
+
+        let subOptionsRightInput = document.getElementById('right-input_select')
+        deletePreviousOptionsFromHtml(subOptionsRightInput);
+
+       leftOptions.forEach(item=>{
+        addOptions(subOptionsRightInput, {value: item, text: units[item].name});
+        
+       })
+        //to change the order of subOptionsRightInput children 
+      subOptionsRightInput.value = subOptionsRightInput[1].value;
+      
+   
 
 
 
