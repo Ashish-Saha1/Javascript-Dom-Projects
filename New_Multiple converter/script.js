@@ -189,27 +189,59 @@ window.onload = function(){
         //Same work for below two line
         //subOptionsRightInput.value = subOptionsRightInput[1].value;
     //   subOptionsRightInput.getElementsByTagName('option')[1].selected = 'selected'
-    subOptionsLeftInput.addEventListener('change', function (e){
-        let firstValue = subOptionsRightInput[1].value
-        
-        console.log(firstValue, subOptionsLeftInput.value, subOptionsRightInput.value);
- 
-        if(subOptionsRightInput.value === subOptionsLeftInput.value){
-            
-         subOptionsRightInput.value = subOptionsLeftInput.value;
-            
-        }
-
-            
-        
-         
-     })  
-  
-
     
+    
+    
+    // let previousValue;
+
+    // subOptionsLeftInput.addEventListener('change', function (e){
+            
+    //    console.log('Previous Value:', previousValue)
+
+    //    previousValue = subOptionsLeftInput.value;
+            
+    //    console.log('Current Value:', subOptionsLeftInput.value);
+         
+    //  })  
+  
+       let previousOption;
+    subOptionsLeftInput.addEventListener('change', function (e){
+        let currentValueLeft = subOptionsLeftInput.value;
+        let currentValueRight = subOptionsRightInput.value;
+        //     console.log(prev, currentValueLeft,currentValueRight)
+
+        //     if(currentValueLeft === currentValueRight){
+        //         currentValueRight = prev
+        //     }
+        console.log('Previous Option:', previousOption);
+
+            curentOption = subOptionsLeftInput.options[subOptionsLeftInput.selectedIndex];
+
+            if(currentValueLeft === currentValueRight){
+                
+            }
 
 
 
+           previousOption = subOptionsLeftInput.options[subOptionsLeftInput.selectedIndex];
+
+            console.log('Current Option:', curentOption);
+            
+         })
+
+
+         subOptionsRightInput.addEventListener('change', function (e){
+            console.log(prev)
+            
+            
+                
+            }
+            
+            
+
+            
+             
+         })
     
 
 
