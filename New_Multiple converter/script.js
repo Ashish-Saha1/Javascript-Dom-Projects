@@ -189,8 +189,34 @@ window.onload = function(){
         //Same work for below two line
         //subOptionsRightInput.value = subOptionsRightInput[1].value;
     //   subOptionsRightInput.getElementsByTagName('option')[1].selected = 'selected'
+    subOptionsLeftInput.addEventListener('change', function (e){
+        let firstValue = subOptionsRightInput[1].value
         
+        console.log(firstValue, subOptionsLeftInput.value, subOptionsRightInput.value);
+ 
+        if(subOptionsRightInput.value === subOptionsLeftInput.value){
+            
+         subOptionsRightInput.value = subOptionsLeftInput.value;
+            
+        }
+
+            
         
+         
+     })  
+  
+
+    
+
+
+
+    
+
+
+
     }
 
+    
+
+  
     
