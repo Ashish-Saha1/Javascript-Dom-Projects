@@ -87,6 +87,12 @@ let converter = {
 
 }
 
+    let leftPreviousValue = "";
+    let rightPreviousValue = "";
+
+
+
+
 window.onload = function(){
     main()
 }
@@ -192,57 +198,35 @@ window.onload = function(){
     
     
     
-    // let previousValue;
+    
 
-    // subOptionsLeftInput.addEventListener('change', function (e){
-            
-    //    console.log('Previous Value:', previousValue)
+        leftPreviousValue = subOptionsLeftInput.value;
+        rightPreviousValue = subOptionsRightInput.value;
 
-    //    previousValue = subOptionsLeftInput.value;
-            
-    //    console.log('Current Value:', subOptionsLeftInput.value);
-         
-    //  })  
-  
-       let previousOption;
-    subOptionsLeftInput.addEventListener('change', function (e){
-        let currentValueLeft = subOptionsLeftInput.value;
-        let currentValueRight = subOptionsRightInput.value;
-        //     console.log(prev, currentValueLeft,currentValueRight)
-
-        //     if(currentValueLeft === currentValueRight){
-        //         currentValueRight = prev
-        //     }
-        console.log('Previous Option:', previousOption);
-
-            curentOption = subOptionsLeftInput.options[subOptionsLeftInput.selectedIndex];
-
-            if(currentValueLeft === currentValueRight){
-                
+          
+        subOptionsLeftInput.addEventListener('change', function(event){         
+            if(event.target.value === subOptionsRightInput.value){
+                subOptionsRightInput.value = leftPreviousValue;
             }
 
-
-
-           previousOption = subOptionsLeftInput.options[subOptionsLeftInput.selectedIndex];
-
-            console.log('Current Option:', curentOption);
-            
-         })
-
-
-         subOptionsRightInput.addEventListener('change', function (e){
-            console.log(prev)
-            
-            
-                
-            }
-            
-            
+            leftPreviousValue = event.target.value;
+        })   
 
             
              
-         })
-    
+        
+     subOptionsRightInput.addEventListener('change', function(event){
+        if(event.target.value === subOptionsLeftInput.value){
+            subOptionsLeftInput.value = rightPreviousValue;
+            console.log(subOptionsLeftInput.value = rightPreviousValue)
+        }
+
+        rightPreviousValue = event.target.value;
+        }) 
+
+
+
+
 
 
 
