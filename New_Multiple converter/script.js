@@ -219,6 +219,7 @@ window.onload = function(){
         if(event.target.value === subOptionsLeftInput.value){
             subOptionsLeftInput.value = rightPreviousValue;
             console.log(subOptionsLeftInput.value = rightPreviousValue)
+            console.log(subOptionsLeftInput.value,rightPreviousValue)
         }
 
         rightPreviousValue = event.target.value;
