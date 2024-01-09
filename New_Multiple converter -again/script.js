@@ -75,11 +75,60 @@ const converter = {
 
 function main(){
     let inputCategory = document.getElementById('category-select');
+    let leftSelect = document.getElementById('left-input_select');
+    let rightSelect = document.getElementById('right-input_select');
         removeAllChild(inputCategory)
     let converterKeys = Object.keys(converter).sort();
         converterKeys.forEach((item)=>{
             addOptionsInCategory(inputCategory, {value: item, text: converter[item].name})
         })
+
+        
+        inputCategory.addEventListener('change', function(){
+            let converterCategoryName = inputCategory.value;
+            let units = converter[converterCategoryName].units;
+            
+        
+            //Left Handler
+                removeAllChild(leftSelect)
+            let leftOptions = Object.keys(units)      
+                leftOptions.forEach((item)=>{
+                    addOptionsInCategory(leftSelect, {value: item, text: units[item] })
+                })  
+                
+                
+            //Right Handler
+                 removeAllChild(rightSelect)
+                 let rightOptions = Object.keys(units)      
+                     rightOptions.forEach((item)=>{
+                         addOptionsInCategory(rightSelect, {value: item, text: units[item] });
+                        
+                     })
+            
+                rightSelect.getElementsByTagName('option')[1].selected = "selected"
+        })    
+    
+    let converterCategoryName = inputCategory.value;
+    let units = converter[converterCategoryName].units;
+    
+
+    //Left Handler
+        removeAllChild(leftSelect)
+    let leftOptions = Object.keys(units)      
+        leftOptions.forEach((item)=>{
+            addOptionsInCategory(leftSelect, {value: item, text: units[item] })
+        })  
+        
+        
+    //Right Handler
+         removeAllChild(rightSelect)
+         let rightOptions = Object.keys(units)      
+             rightOptions.forEach((item)=>{
+                 addOptionsInCategory(rightSelect, {value: item, text: units[item] });
+                
+             })
+    
+        rightSelect.getElementsByTagName('option')[1].selected = "selected"
 
 }
 
@@ -104,9 +153,6 @@ function removeAllChild(parent){
 }
 
    
-    
-    
-    
 
 
 
