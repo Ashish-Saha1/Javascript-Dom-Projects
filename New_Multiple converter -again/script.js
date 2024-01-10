@@ -71,7 +71,8 @@ const converter = {
 }
 
 
-
+let lastLeftSelectedValue = "";
+let lastRightSelectedValue = "";
 
 function main(){
     let inputCategory = document.getElementById('category-select');
@@ -90,6 +91,38 @@ function main(){
         })    
     
     
+        leftSelect.addEventListener('change', function(event){
+            if(event.target.value === rightSelect.value){
+            
+                const options = rightSelect.getElementsByTagName('option');
+                for(let i = 0; i<options.length; i++){
+                    if(lastLeftSelectedValue === options[i].value){
+                     
+                        options[i].selected = 'selected';
+                        lastRightSelectedValue = options[i].value;
+                        break;
+                    }
+                }
+            }
+            lastLeftSelectedValue = event.target.value;
+        })
+
+
+        rightSelect.addEventListener('change', function(event){
+            if(event.target.value === leftSelect.value){                 
+
+                const options = leftSelect.getElementsByTagName('option');
+                for(let i = 0; i<options.length; i++){
+                    if(lastRightSelectedValue === options[i].value){
+                  
+                        options[i].selected = 'selected';
+                        lastLeftSelectedValue = options[i].value;
+                        break;
+                    }
+                }
+            }
+            lastRightSelectedValue = event.target.value;
+        })
 
 }
 
@@ -117,7 +150,7 @@ function removeAllChild(parent){
 function updateInputCategoryChange(inputCategory,leftSelect,rightSelect){
     let converterCategoryName = inputCategory.value;
     let units = converter[converterCategoryName].units;
-    let options = Object.keys(units).sort() 
+    let options = Object.keys(units) 
 
     //Left Handler
         removeAllChild(leftSelect)         
@@ -125,6 +158,7 @@ function updateInputCategoryChange(inputCategory,leftSelect,rightSelect){
             addOptionsInCategory(leftSelect, {value: item, text: units[item] })
         })  
         
+        lastLeftSelectedValue = leftSelect.value;
         
     //Right Handler
          removeAllChild(rightSelect)     
@@ -132,8 +166,10 @@ function updateInputCategoryChange(inputCategory,leftSelect,rightSelect){
                  addOptionsInCategory(rightSelect, {value: item, text: units[item] });
                 
              })
-    
-        rightSelect.getElementsByTagName('option')[1].selected = "selected"
+    // for right side input field selected value no -2
+        rightSelect.getElementsByTagName('option')[1].selected = "selected";
+
+        lastRightSelectedValue = rightSelect.value;
 }
 
 
