@@ -83,52 +83,13 @@ function main(){
             addOptionsInCategory(inputCategory, {value: item, text: converter[item].name})
         })
 
+       updateInputCategoryChange(inputCategory,leftSelect,rightSelect)
         
         inputCategory.addEventListener('change', function(){
-            let converterCategoryName = inputCategory.value;
-            let units = converter[converterCategoryName].units;
-            
-        
-            //Left Handler
-                removeAllChild(leftSelect)
-            let leftOptions = Object.keys(units)      
-                leftOptions.forEach((item)=>{
-                    addOptionsInCategory(leftSelect, {value: item, text: units[item] })
-                })  
-                
-                
-            //Right Handler
-                 removeAllChild(rightSelect)
-                 let rightOptions = Object.keys(units)      
-                     rightOptions.forEach((item)=>{
-                         addOptionsInCategory(rightSelect, {value: item, text: units[item] });
-                        
-                     })
-            
-                rightSelect.getElementsByTagName('option')[1].selected = "selected"
+            updateInputCategoryChange(inputCategory,leftSelect,rightSelect)
         })    
     
-    let converterCategoryName = inputCategory.value;
-    let units = converter[converterCategoryName].units;
     
-
-    //Left Handler
-        removeAllChild(leftSelect)
-    let leftOptions = Object.keys(units)      
-        leftOptions.forEach((item)=>{
-            addOptionsInCategory(leftSelect, {value: item, text: units[item] })
-        })  
-        
-        
-    //Right Handler
-         removeAllChild(rightSelect)
-         let rightOptions = Object.keys(units)      
-             rightOptions.forEach((item)=>{
-                 addOptionsInCategory(rightSelect, {value: item, text: units[item] });
-                
-             })
-    
-        rightSelect.getElementsByTagName('option')[1].selected = "selected"
 
 }
 
@@ -153,7 +114,27 @@ function removeAllChild(parent){
 }
 
    
+function updateInputCategoryChange(inputCategory,leftSelect,rightSelect){
+    let converterCategoryName = inputCategory.value;
+    let units = converter[converterCategoryName].units;
+    let options = Object.keys(units).sort() 
 
+    //Left Handler
+        removeAllChild(leftSelect)         
+        options.forEach((item)=>{
+            addOptionsInCategory(leftSelect, {value: item, text: units[item] })
+        })  
+        
+        
+    //Right Handler
+         removeAllChild(rightSelect)     
+         options.forEach((item)=>{
+                 addOptionsInCategory(rightSelect, {value: item, text: units[item] });
+                
+             })
+    
+        rightSelect.getElementsByTagName('option')[1].selected = "selected"
+}
 
 
 
