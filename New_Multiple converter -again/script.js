@@ -12,6 +12,130 @@ const converter = {
             squareMile: 'Square MIle',
             squareYard: "Square Yard",
             squareFoot: "Square Foot"
+        },
+
+        variants: {
+            'squareKm:squareM': {
+                formula: "",
+                calculation(n){
+                    return n * 10;
+                }
+            },
+            'squareKm:squareMile': {
+                formula: "",
+                calculation(n){
+                    return n * 10;
+                }
+            },
+            'squareKm:squareYard': {
+                formula: "",
+                calculation(n){
+                    return n * 10;
+                }
+            },
+            'squareKm:squareFoot': {
+                formula: "",
+                calculation(n){
+                    return n * 10;
+                }
+            },
+            'squareM:squareKm': {
+                formula: "",
+                calculation(n){
+                    return n * 10;
+                }
+            },
+            'squareM:squareMile': {
+                formula: "",
+                calculation(n){
+                    return n * 10;
+                }
+            },
+            'squareM:squareYard': {
+                formula: "",
+                calculation(n){
+                    return n * 10;
+                }
+            },
+            'squareM:squareFoot': {
+                formula: "",
+                calculation(n){
+                    return n * 10;
+                }
+            },
+            'squareMile:squareKm': {
+                formula: "",
+                calculation(n){
+                    return n * 10;
+                }
+            },
+            'squareMile:squareM': {
+                formula: "",
+                calculation(n){
+                    return n * 10;
+                }
+            },
+            'squareMile:squareYard': {
+                formula: "",
+                calculation(n){
+                    return n * 10;
+                }
+            },
+            'squareMile:squareFoot': {
+                formula: "",
+                calculation(n){
+                    return n * 10;
+                }
+            },
+            'squareYard:squareKm': {
+                formula: "",
+                calculation(n){
+                    return n * 10;
+                }
+            },
+            'squareYard:squareM': {
+                formula: "",
+                calculation(n){
+                    return n * 10;
+                }
+            },
+            'squareYard:squareMile': {
+                formula: "",
+                calculation(n){
+                    return n * 10;
+                }
+            },
+            'squareYard:squareFoot': {
+                formula: "",
+                calculation(n){
+                    return n * 10;
+                }
+            },
+            'squareFoot:squareKm': {
+                formula: "",
+                calculation(n){
+                    return n * 10;
+                }
+            },
+            'squareFoot:squareM': {
+                formula: "",
+                calculation(n){
+                    return n * 10;
+                }
+            },
+            'squareFoot:squareMile': {
+                formula: "",
+                calculation(n){
+                    return n * 10;
+                }
+            },
+            'squareFoot:squareYard': {
+                formula: "",
+                calculation(n){
+                    return n * 10;
+                }
+            },
+
         }
     },
 
@@ -21,10 +145,132 @@ const converter = {
             tonne: "Tonne",
             kilogram: "Kilogram",
             gram: "Gram",
-            milligram: "Milligram",
-            microgram: "Microgram",
             pound: "Pound",
             ounce: "Ounce", 
+        },
+
+        variants: {
+            'tonne:kilogram': {
+                formula: "",
+                calculation(n){
+                    return n * 10;
+                }
+            },
+            'tonne:gram': {
+                formula: "",
+                calculation(n){
+                    return n * 10;
+                }
+            },
+            'tonne:pound': {
+                formula: "",
+                calculation(n){
+                    return n * 10;
+                }
+            },
+            'tonne:ounce': {
+                formula: "",
+                calculation(n){
+                    return n * 10;
+                }
+            },
+            'kilogram:tonne': {
+                formula: "",
+                calculation(n){
+                    return n * 10;
+                }
+            },
+            'kilogram:gram': {
+                formula: "",
+                calculation(n){
+                    return n * 10;
+                }
+            },
+            'kilogram:pound': {
+                formula: "",
+                calculation(n){
+                    return n * 10;
+                }
+            },
+            'kilogram:ounce': {
+                formula: "",
+                calculation(n){
+                    return n * 10;
+                }
+            },
+            'gram:tonne': {
+                formula: "",
+                calculation(n){
+                    return n * 10;
+                }
+            },
+            'gram:kilogram': {
+                formula: "",
+                calculation(n){
+                    return n * 10;
+                }
+            },
+            'gram:pound': {
+                formula: "",
+                calculation(n){
+                    return n * 10;
+                }
+            },
+            'gram:ounce': {
+                formula: "",
+                calculation(n){
+                    return n * 10;
+                }
+            },
+            'pound:tonne': {
+                formula: "",
+                calculation(n){
+                    return n * 10;
+                }
+            },
+            'pound:kilogram': {
+                formula: "",
+                calculation(n){
+                    return n * 10;
+                }
+            },
+            'pound:gram': {
+                formula: "",
+                calculation(n){
+                    return n * 10;
+                }
+            },
+            'pound:ounce': {
+                formula: "",
+                calculation(n){
+                    return n * 10;
+                }
+            },
+            'ounce:tonne': {
+                formula: "",
+                calculation(n){
+                    return n * 10;
+                }
+            },
+            'ounce:kilogram': {
+                formula: "",
+                calculation(n){
+                    return n * 10;
+                }
+            },
+            'ounce:gram': {
+                formula: "",
+                calculation(n){
+                    return n * 10;
+                }
+            },
+            'ounce:pound': {
+                formula: "",
+                calculation(n){
+                    return n * 10;
+                }
+            },
+            
         }
     },
 
