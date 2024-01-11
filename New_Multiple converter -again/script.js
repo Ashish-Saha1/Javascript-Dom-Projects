@@ -97,14 +97,20 @@ function main(){
                 const options = rightSelect.getElementsByTagName('option');
                 for(let i = 0; i<options.length; i++){
                     if(lastLeftSelectedValue === options[i].value){
+                     console.log(lastLeftSelectedValue, options[i].value,lastRightSelectedValue);
                      
                         options[i].selected = 'selected';
+                        //below line is for update lastRightSelectedValue like lastLeftSelectedValue 
                         lastRightSelectedValue = options[i].value;
+                        console.log(lastRightSelectedValue)
                         break;
                     }
                 }
             }
+           
+            
             lastLeftSelectedValue = event.target.value;
+       
         })
 
 
@@ -114,9 +120,9 @@ function main(){
                 const options = leftSelect.getElementsByTagName('option');
                 for(let i = 0; i<options.length; i++){
                     if(lastRightSelectedValue === options[i].value){
-                  
+                        console.log(lastRightSelectedValue, options[i].value,options[i]);
                         options[i].selected = 'selected';
-                        lastLeftSelectedValue = options[i].value;
+                        //lastLeftSelectedValue = options[i].value;
                         break;
                     }
                 }
