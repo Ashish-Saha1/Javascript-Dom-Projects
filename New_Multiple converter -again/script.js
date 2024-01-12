@@ -16,81 +16,81 @@ const converter = {
 
         variants: {
             'squareKm:squareM': {
-                formula: "",
+                formula: "multiply the area value by 1000000",
                 calculation(n){
-                    return n * 10;
+                    return n * 1000000;
                 }
             },
             'squareKm:squareMile': {
-                formula: "",
+                formula: "divide the area value by 2.59",
                 calculation(n){
-                    return n * 10;
+                    return n / 2.59;
                 }
             },
             'squareKm:squareYard': {
-                formula: "",
+                formula: "multiply the area value by 1196000",
                 calculation(n){
-                    return n * 10;
+                    return n * 1196000;
                 }
             },
             'squareKm:squareFoot': {
-                formula: "",
+                formula: "or an approximate result, multiply the area value by 10760000 ",
                 calculation(n){
-                    return n * 10;
+                    return n * 10760000;
                 }
             },
             'squareM:squareKm': {
-                formula: "",
+                formula: "divide the area value by 1000000",
                 calculation(n){
-                    return n * 10;
+                    return n / 1000000;
                 }
             },
             'squareM:squareMile': {
-                formula: "",
+                formula: "divide the area value by 2590000",
                 calculation(n){
-                    return n * 10;
+                    return n / 2590000;
                 }
             },
             'squareM:squareYard': {
-                formula: "",
+                formula: "multiply the area value by 1.196",
                 calculation(n){
-                    return n * 10;
+                    return n * 1.196;
                 }
             },
             'squareM:squareFoot': {
-                formula: "",
+                formula: "multiply the area value by 10.764",
                 calculation(n){
-                    return n * 10;
+                    return n * 10.764;
                 }
             },
             'squareMile:squareKm': {
-                formula: "",
+                formula: "multiply the area value by 2.59",
                 calculation(n){
-                    return n * 10;
+                    return n * 2.59;
                 }
             },
             'squareMile:squareM': {
-                formula: "",
+                formula: "multiply the area value by 25900000",
                 calculation(n){
-                    return n * 10;
+                    return n * 25900000;
                 }
             },
             'squareMile:squareYard': {
-                formula: "",
+                formula: "for an approximate result, multiply the area value by 3098000",
                 calculation(n){
-                    return n * 10;
+                    return n * 3098000;
                 }
             },
             'squareMile:squareFoot': {
-                formula: "",
+                formula: "for an approximate result, multiply the area value by 27880000",
                 calculation(n){
-                    return n * 10;
+                    return n * 27880000;
                 }
             },
             'squareYard:squareKm': {
-                formula: "",
+                formula: "divide the area value by 1196000",
                 calculation(n){
-                    return n * 10;
+                    return n / 1196000;
                 }
             },
             'squareYard:squareM': {
@@ -157,117 +157,117 @@ const converter = {
                 }
             },
             'tonne:gram': {
-                formula: "",
+                formula: "multiply the mass value by 1000",
                 calculation(n){
-                    return n * 10;
+                    return n * 1000;
                 }
             },
             'tonne:pound': {
-                formula: "",
+                formula: "for an approximate result, multiply the mass value by 2205",
                 calculation(n){
-                    return n * 10;
+                    return n * 2205;
                 }
             },
             'tonne:ounce': {
-                formula: "",
+                formula: "for an approximate result, multiply the mass value by 35270",
                 calculation(n){
-                    return n * 10;
+                    return n * 35270;
                 }
             },
             'kilogram:tonne': {
-                formula: "",
+                formula: "divide the mass value by 1000 ",
                 calculation(n){
-                    return n * 10;
+                    return n / 1000;
                 }
             },
             'kilogram:gram': {
-                formula: "",
+                formula: "multiply the mass value by 1000   ",
                 calculation(n){
-                    return n * 10;
+                    return n * 1000;
                 }
             },
             'kilogram:pound': {
-                formula: "",
+                formula: "for an approximate result, multiply the mass value by 2.205",
                 calculation(n){
-                    return n * 10;
+                    return n * 2.205;
                 }
             },
             'kilogram:ounce': {
-                formula: "",
+                formula: "multiply the mass value by 35.274 ",
                 calculation(n){
-                    return n * 10;
+                    return n * 35.27;
                 }
             },
             'gram:tonne': {
-                formula: "",
+                formula: "divide the mass value by 1e+6",
                 calculation(n){
-                    return n * 10;
+                    return n / new Number(1e+6);
                 }
             },
             'gram:kilogram': {
-                formula: "",
+                formula: "divide the mass value by 1000 ",
                 calculation(n){
-                    return n * 10;
+                    return n / 1000;
                 }
             },
             'gram:pound': {
-                formula: "",
+                formula: "for an approximate result, divide the mass value by 453.6 ",
                 calculation(n){
-                    return n * 10;
+                    return n / 453.6;
                 }
             },
             'gram:ounce': {
-                formula: "",
+                formula: "for an approximate result, divide the mass value by 28.35 ",
                 calculation(n){
-                    return n * 10;
+                    return n / 28.35;
                 }
             },
             'pound:tonne': {
-                formula: "",
+                formula: "for an approximate result, divide the mass value by 2205",
                 calculation(n){
-                    return n * 10;
+                    return n / 2205;
                 }
             },
             'pound:kilogram': {
-                formula: "",
+                formula: "for an approximate result, divide the mass value by 2.205 ",
                 calculation(n){
-                    return n * 10;
+                    return n / 2.205;
                 }
             },
             'pound:gram': {
-                formula: "",
+                formula: "for an approximate result, multiply the mass value by 453.6   ",
                 calculation(n){
-                    return n * 10;
+                    return n * 453.6;
                 }
             },
             'pound:ounce': {
-                formula: "",
+                formula: "multiply the mass value by 16 ",
                 calculation(n){
-                    return n * 10;
+                    return n * 16;
                 }
             },
             'ounce:tonne': {
-                formula: "",
+                formula: "for an approximate result, divide the mass value by 35270 ",
                 calculation(n){
-                    return n * 10;
+                    return n / 35270;
                 }
             },
             'ounce:kilogram': {
-                formula: "",
+                formula: "divide the mass value by 35.274 ",
                 calculation(n){
-                    return n * 10;
+                    return n / 35.274;
                 }
             },
             'ounce:gram': {
-                formula: "",
+                formula: "for an approximate result, multiply the mass value by 28.35  ",
                 calculation(n){
-                    return n * 10;
+                    return n * 28.35;
                 }
             },
             'ounce:pound': {
-                formula: "",
+                formula: "divide the mass value by 16  ",
                 calculation(n){
-                    return n * 10;
+                    return n / 16;
                 }
             },
             
@@ -322,6 +322,8 @@ let lastRightSelectedValue = "";
 
 function main(){
     let inputCategory = document.getElementById('category-select');
+    let leftInput = document.getElementById('left-inp');
+    let rightInput = document.getElementById('right-inp');
     let leftSelect = document.getElementById('left-input_select');
     let rightSelect = document.getElementById('right-input_select');
         removeAllChild(inputCategory)
@@ -330,7 +332,18 @@ function main(){
             addOptionsInCategory(inputCategory, {value: item, text: converter[item].name})
         })
 
-       updateInputCategoryChange(inputCategory,leftSelect,rightSelect)
+        //default input category
+       updateInputCategoryChange(inputCategory,leftSelect,rightSelect);
+
+    let converterCategoryName = inputCategory.value;
+    let variants = converter[converterCategoryName].variants;
+    let variantKey = `${leftSelect.value}:${rightSelect.value}`;
+    let variant = variants[variantKey];
+       
+    leftInput.value = 1;
+    rightInput.value = variant.calculation(1)
+
+
         
         inputCategory.addEventListener('change', function(){
             updateInputCategoryChange(inputCategory,leftSelect,rightSelect)
@@ -368,7 +381,7 @@ function main(){
                     if(lastRightSelectedValue === options[i].value){
                         console.log(lastRightSelectedValue, options[i].value,options[i]);
                         options[i].selected = 'selected';
-                        //lastLeftSelectedValue = options[i].value;
+                        lastLeftSelectedValue = options[i].value;
                         break;
                     }
                 }
@@ -426,3 +439,6 @@ function updateInputCategoryChange(inputCategory,leftSelect,rightSelect){
 
 
 
+function calculator(){
+
+}
