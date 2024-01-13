@@ -324,6 +324,7 @@ function main(){
     let inputCategory = document.getElementById('category-select');
     let leftInput = document.getElementById('left-inp');
     let rightInput = document.getElementById('right-inp');
+   
     let leftSelect = document.getElementById('left-input_select');
     let rightSelect = document.getElementById('right-input_select');
         removeAllChild(inputCategory)
@@ -335,14 +336,9 @@ function main(){
         //default input category
        updateInputCategoryChange(inputCategory,leftSelect,rightSelect);
 
-    let converterCategoryName = inputCategory.value;
-    let variants = converter[converterCategoryName].variants;
-    let variantKey = `${leftSelect.value}:${rightSelect.value}`;
-    let variant = variants[variantKey];
+       caculateValue(inputCategory,leftSelect, rightSelect)
        
-    leftInput.value = 1;
-    rightInput.value = variant.calculation(1)
-
+        
 
         
         inputCategory.addEventListener('change', function(){
@@ -369,7 +365,7 @@ function main(){
            
             
             lastLeftSelectedValue = event.target.value;
-       
+            caculateValue(inputCategory,leftSelect, rightSelect)
         })
 
 
@@ -387,7 +383,37 @@ function main(){
                 }
             }
             lastRightSelectedValue = event.target.value;
+            caculateValue(inputCategory,leftSelect, rightSelect)
         })
+
+        leftInput.addEventListener('keyup', function(event){
+            if(event.target.value && !isNaN(event.target.value)){
+                let converterCategoryName = inputCategory.value;
+                let variants = converter[converterCategoryName].variants;
+                let variantKey = `${leftSelect.value}:${rightSelect.value}`;
+                let variant = variants[variantKey];
+                leftInput.value = Number(event.target.value)
+                rightInput.value = variant.calculation(Number(event.target.value))
+            }else{
+                rightInput.value = '';
+            }
+        })
+
+
+
+        rightInput.addEventListener('keyup', function(event){
+            if(event.target.value && !isNaN(event.target.value)){
+                let converterCategoryName = inputCategory.value;
+                let variants = converter[converterCategoryName].variants;
+                let variantKey = `${leftSelect.value}:${rightSelect.value}`;
+                let variant = variants[variantKey];
+                leftInput.value = variant.calculation(rightInput.value)
+            }else{
+                leftInput.value = "";
+            }
+        })
+
+
 
 }
 
@@ -439,6 +465,17 @@ function updateInputCategoryChange(inputCategory,leftSelect,rightSelect){
 
 
 
-function calculator(){
-
+function caculateValue(inputCategory,leftSelect, rightSelect){
+    let leftInput = document.getElementById('left-inp');
+    let rightInput = document.getElementById('right-inp');
+    let converterCategoryName = inputCategory.value;
+    let variants = converter[converterCategoryName].variants;
+    let variantKey = `${leftSelect.value}:${rightSelect.value}`;
+    let variant = variants[variantKey];
+    let formulaDisplay = document.getElementById('display-formula')
+    formulaDisplay.innerHTML = variant.formula;  
+     leftInput.value = 1;
+     rightInput.value = variant.calculation(1)
+    
+    
 }
