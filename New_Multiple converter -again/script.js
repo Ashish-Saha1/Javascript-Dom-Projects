@@ -94,45 +94,45 @@ const converter = {
                 }
             },
             'squareYard:squareM': {
-                formula: "",
+                formula: "divide the area value by 1.196",
                 calculation(n){
-                    return n * 10;
+                    return n / 1.196;
                 }
             },
             'squareYard:squareMile': {
-                formula: "",
+                formula: "for an approximate result, divide the area value by 3.098e+6  ",
                 calculation(n){
-                    return n * 10;
+                    return n / new Number(3.098e+6);
                 }
             },
             'squareYard:squareFoot': {
-                formula: "",
+                formula: "multiply the area value by 9",
                 calculation(n){
-                    return n * 10;
+                    return n * 9;
                 }
             },
             'squareFoot:squareKm': {
-                formula: "",
+                formula: "for an approximate result, divide the area value by 1.076e+7 ",
                 calculation(n){
-                    return n * 10;
+                    return n / new Number(1.076e+7);
                 }
             },
             'squareFoot:squareM': {
-                formula: "",
+                formula: "divide the area value by 10.764 ",
                 calculation(n){
-                    return n * 10;
+                    return n / 10.764;
                 }
             },
             'squareFoot:squareMile': {
-                formula: "",
+                formula: "for an approximate result, divide the area value by 2.788e+7",
                 calculation(n){
-                    return n * 10;
+                    return n / new Number(2.788e+7);
                 }
             },
             'squareFoot:squareYard': {
-                formula: "",
+                formula: "divide the area value by 9",
                 calculation(n){
-                    return n * 10;
+                    return n / 9;
                 }
             },
 
@@ -280,27 +280,133 @@ const converter = {
             kilometer: "Kilometer",
             meter: "Meter",
             centimeter: "Centimeter",
-            millimeter: "Millimeter",
-            micrometer: "Micrometer",
-            nenometer: "Nenometer",
             mile: "Mile",
-            yard: "Yard",
-            foot: "Foot",
-            inch: "Inch",
-            nauticalMile: "NauticalMile"
+        },
+
+        variants: {
+            'kilometer:meter':{
+                formula: "multiply the length value by 1000 ",
+                calculation(n){
+                    return n * 1000;
+                }
+            },
+            'kilometer:centimeter':{
+                formula: "multiply the length value by 100000 ",
+                calculation(n){
+                    return n * 100000;
+                }
+            },
+            'kilometer:mile':{
+                formula: "for an approximate result, divide the length value by 1.609 ",
+                calculation(n){
+                    return n / 1.609;
+                }
+            },
+            'meter:kilometer':{
+                formula: "divide the length value by 1000   ",
+                calculation(n){
+                    return n / 1000;
+                }
+            },
+            'meter:centimeter':{
+                formula: "multiply the length value by 100" ,
+                calculation(n){
+                    return n * 100;
+                }
+            },
+            'meter:mile':{
+                formula: "for an approximate result, divide the length value by 1609",
+                calculation(n){
+                    return n / 1609;
+                }
+            },
+            'centimeter:kilometer':{
+                formula: 'divide the length value by 100000',
+                calculation(n){
+                    return n / 100000;
+                }
+            },
+            'centimeter:meter':{
+                formula: "divide the length value by 100 ",
+                calculation(n){
+                    return n / 100;
+                }
+            },
+            'centimeter:mile':{
+                formula: "for an approximate result, divide the length value by 160900",
+                calculation(n){
+                    return n / 160900;
+                }
+            },
+            'mile:kilometer':{
+                formula: "for an approximate result, multiply the length value by 1.609",
+                calculation(n){
+                    return n * 1.609;
+                }
+            },
+            'mile:meter':{
+                formula: " for an approximate result, multiply the length value by 1609",
+                calculation(n){
+                    return n * 1609;
+                }
+            },
+            'mile:centimeter':{
+                formula: " for an approximate result, multiply the length value by 160900",
+                calculation(n){
+                    return n * 160900;
+                }
+            },
+
         }
+        
     },
 
     time: {
         name: "Time",
         units:  {
-            nanosecond: "Nanosecond",
-            microsecond: "Microsecond",
-            millisecond: "Millisecond",
             second: "Second",
             minute: "Minute",
-            hour: "Hour",
-           
+            hour: "Hour",          
+        },
+
+        variants: {
+            'second:minute':{
+                formula: "divide the time value by 60 ",
+                calculation(n){
+                    return n / 60;
+                }
+            },
+            'second:hour':{
+                formula: "divide the time value by 3600 ",
+                calculation(n){
+                    return n / 3600;
+                }
+            },
+            'minute:second':{
+                formula: "multiply the time value by 60 ",
+                calculation(n){
+                    return n * 60;
+                }
+            },
+            'minute:hour':{
+                formula: "divide the time value by 60",
+                calculation(n){
+                    return n / 60;
+                }
+            },
+            'hour:second':{
+                formula: " multiply the time value by 3600 ",
+                calculation(n){
+                    return n * 3600;
+                }
+            },
+            'hour:minute':{
+                formula: "multiply the time value by 60",
+                calculation(n){
+                    return n * 60;
+                }
+            },
+         
         }
     },
 
@@ -310,8 +416,46 @@ const converter = {
             bitePerS: "Bit per second",
             kilobitePerS: "Kilobite per second",
             megabitePerS: "Megabyte per second",
-            gigabitePerS: "Gigabyte per second",
-            terabitePerS: "Terabyte per second", 
+        },
+
+        variants: {
+            'bitePerS:kilobitePerS':{
+                formula: "divide the data transfer rate value by 1000 ",
+                calculation(n){
+                    return n / 1000;
+                }
+            },
+            'bitePerS:megabitePerS':{
+                formula: "divide the data transfer rate value by 1e+6 ",
+                calculation(n){
+                    return n / new Number(1e+6);
+                }
+            },
+            'kilobitePerS:bitePerS':{
+                formula: "multiply the data transfer rate value by 1000 ",
+                calculation(n){
+                    return n * 1000;
+                }
+            },
+            'kilobitePerS:megabitePerS':{
+                formula: "divide the data transfer rate value by 1000",
+                calculation(n){
+                    return n / 1000;
+                }
+            },
+            'megabitePerS:bitePerS':{
+                formula: "multiply the data transfer rate value by 1e+6 ",
+                calculation(n){
+                    return n * new Number(1e+6);
+                }
+            },
+            'megabitePerS:kilobitePerS':{
+                formula: "multiply the data transfer rate value by 1000",
+                calculation(n){
+                    return n * 1000;
+                }
+            },
+           
         }
     }
 }
@@ -461,6 +605,8 @@ function updateInputCategoryChange(inputCategory,leftSelect,rightSelect){
         rightSelect.getElementsByTagName('option')[1].selected = "selected";
 
         lastRightSelectedValue = rightSelect.value;
+// change default value when change select category
+        caculateValue(inputCategory,leftSelect, rightSelect)
 }
 
 
@@ -478,4 +624,5 @@ function caculateValue(inputCategory,leftSelect, rightSelect){
      rightInput.value = variant.calculation(1)
     
     
+    console.log(variant.calculation(leftInput.value))
 }
