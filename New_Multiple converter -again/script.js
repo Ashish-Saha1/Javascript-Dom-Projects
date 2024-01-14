@@ -211,12 +211,12 @@ const converter = {
 
         variants: {
             'tonne:kilogram': {
-                formula: "",
+                formula: "multiply the mass value by 1000",
                 calculation(n){
-                    return n * 10;
+                    return n * 1000;
                 },
                 calculationRevarse(n){
-                    return n / 10;
+                    return n / 1000;
                 }
             },
             'tonne:gram': {
@@ -815,6 +815,21 @@ function caculateValue(inputCategory,leftSelect, rightSelect){
      leftInput.value = 1;
      rightInput.value = variant.calculation(1)
     
-    
-    console.log(variant.calculation(leftInput.value))
+    let x = variant.calculation.toString();
+    let res = x.replace('*', "R")
+    //console.log(res)
 }
+
+
+// Example string representing a function
+var functionString = 'function add(a, b) { return a + b; }';
+
+// Creating a function from the string using the Function constructor
+var dynamicFunction = new Function(functionString);
+
+// Now you can call the dynamically created function
+var result = dynamicFunction(2, 3);
+console.log(result); // Output: 5
+
+
+ 
