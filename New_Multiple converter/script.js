@@ -650,8 +650,7 @@ const converter = {
     }
 }
 
-    let leftPreviousValue = "";
-    let rightPreviousValue = "";
+
 
 
 
@@ -664,138 +663,57 @@ window.onload = function(){
 
  function main(){
     
-
+    let categorySelect = document.getElementById('category-select');
+    let leftSelect = document.getElementById('left-input_select')
+    let rightSelect = document.getElementById('right-input_select')
+    let converters = Object.keys(converter);
     
-    let selectCategoryFirst = document.getElementById('category-select');
-    let subOptionsRightInput = document.getElementById('right-input_select')
-    let subOptionsLeftInput = document.getElementById('left-input_select')
-   
-    deletePreviousOptionsFromHtml(selectCategoryFirst)
+    //Delete privious category from a parent
+    deleteAll(categorySelect)
+
+        //Added options into Main Select category input field
+    converters.forEach((item)=>{      
+        addOptions(categorySelect, {value: item, text:converter[item].name})
+    })
        
-    let converterKeys = Object.keys(converter).sort();  
-        converterKeys.forEach(item=>{
-                //below function call like an object because option.text is like an object
-            addOptions(selectCategoryFirst, {value: item, text: converter[item].name});
-            
-        })
-
-            //Set default caregorty  units
-        updateCategoryChange(selectCategoryFirst,subOptionsLeftInput,subOptionsRightInput)
-
-            //set otpions in left & right category while change main category
-        selectCategoryFirst.addEventListener('change',function(){
-            updateCategoryChange(selectCategoryFirst,subOptionsLeftInput,subOptionsRightInput)
-            
-        })
-
-
-        
-       
+    
+    //Added options into left Select category input field
+  
 
         
       
     }
 
 
-     
+     /**
+      * This function is for to add category name 
+      * @param {object} parent 
+      * @param {object} option 
+      */
    
-
-
-   
-/**
- * 1st obj is a parent div element
- * 2nd obj is a option element of select category
- * @param {object} parent 
- * @param {object} option 
- * function descripption -
- * The function is to add an option element dynamically into a select element
- * option parameter is call like an object such as option.text
- */
     function addOptions(parent, option){
-           
-        let createOptionDomElement = document.createElement('option');
-            createOptionDomElement.innerText = option.text;
+        let createDomOption = document.createElement('option');
+        createDomOption.setAttribute('value', option.value);
+        createDomOption.innerHTML = option.text;
+        parent.appendChild(createDomOption)
+    }
 
-            createOptionDomElement.setAttribute('value', option.value)
-            parent.appendChild(createOptionDomElement)
-          
+
+    /**
+     * This function is to delete all child element form a parent
+     * @param {object} parent 
+     */
+    function deleteAll(parent){
+        while(parent.firstElementChild){
+            parent.firstElementChild.remove()
         }
+    }
 
 
-    function deletePreviousOptionsFromHtml(parent){
-        let child = parent.lastElementChild;
    
-       while(child){
-            parent.removeChild(child);
-            child =parent.lastElementChild;
-       }
-
-    }
-       
-
-    function updateCategoryChange(selectCategoryFirst,subOptionsLeftInput,subOptionsRightInput){
-        let selectCategoryFirstValue = selectCategoryFirst.value;        
-        let units = converter[selectCategoryFirstValue].units;
-        let unitOptions =  Object.keys(units) ;
-
-        deletePreviousOptionsFromHtml(subOptionsLeftInput);
-
-        unitOptions.forEach(item=>{
-        addOptions(subOptionsLeftInput, {value: item, text: units[item].name});
-        })
-
-
-        deletePreviousOptionsFromHtml(subOptionsRightInput);
-
-        unitOptions.forEach(item=>{
-        addOptions(subOptionsRightInput, {value: item, text: units[item].name});
+    function updateOptions(){
         
-       })
-        //to change the order of subOptionsRightInput children 
-        subOptionsRightInput.value = subOptionsRightInput[1].value;
-
-
-        //Same work for below two line
-        //subOptionsRightInput.value = subOptionsRightInput[1].value;
-    //   subOptionsRightInput.getElementsByTagName('option')[1].selected = 'selected'
-    
-    
-    
-    
-
-        leftPreviousValue = subOptionsLeftInput.value;
-        rightPreviousValue = subOptionsRightInput.value;
-
-          
-        subOptionsLeftInput.addEventListener('change', function(event){         
-            if(event.target.value === subOptionsRightInput.value){
-                subOptionsRightInput.value = leftPreviousValue;
-            }
-
-            leftPreviousValue = event.target.value;
-        })   
-
-            
-             
-        
-     subOptionsRightInput.addEventListener('change', function(event){
-        if(event.target.value === subOptionsLeftInput.value){
-            subOptionsLeftInput.value = rightPreviousValue;
-            console.log(subOptionsLeftInput.value = rightPreviousValue)
-            console.log(subOptionsLeftInput.value,rightPreviousValue)
-        }
-
-        rightPreviousValue = event.target.value;
-        }) 
-
-
-
-
-
-
-
     }
-
     
 
   
