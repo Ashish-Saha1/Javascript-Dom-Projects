@@ -666,19 +666,23 @@ window.onload = function(){
     let categorySelect = document.getElementById('category-select');
     let leftSelect = document.getElementById('left-input_select')
     let rightSelect = document.getElementById('right-input_select')
-    let converters = Object.keys(converter);
+    let converters = Object.keys(converter).sort();
+
     
     //Delete privious category from a parent
     deleteAll(categorySelect)
 
         //Added options into Main Select category input field
     converters.forEach((item)=>{      
-        addOptions(categorySelect, {value: item, text:converter[item].name})
+        addOptions(categorySelect, {value: item, text:converter[item].name});
+        
     })
        
+    updateOptions(categorySelect,leftSelect,rightSelect)
+
     
     //Added options into left Select category input field
-  
+
 
         
       
@@ -704,17 +708,23 @@ window.onload = function(){
      * @param {object} parent 
      */
     function deleteAll(parent){
-        while(parent.firstElementChild){
-            parent.firstElementChild.remove()
-        }
+       while(parent.firstChild){
+            parent.removeChild(parent.firstChild)
+       }   
     }
 
 
    
-    function updateOptions(){
-        
+    function updateOptions(categorySelect,leftSelect,rightSelect){
+        // let leftSelect = document.getElementById('left-input_select')
+        // let rightSelect = document.getElementById('right-input_select')
+        let converterName = categorySelect.value;
+
+        let converterUnits = Object.keys(converter[converterName].units)
+
+    console.log(converterUnits)
     }
     
 
-  
+    
     
