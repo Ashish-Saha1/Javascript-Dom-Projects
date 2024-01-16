@@ -40,13 +40,16 @@ body{
     gap: 10px;
 }
 
-
-
-.left-input input, .right-input input{
-    height: 30px;
-    font-size: 20px;
-    text-align: center;
+.left-input, .right-input{
     width: 100%;
+}
+
+#left-input-box, #right-input-box{
+    height: 30px;
+    font-size: 15px;
+    text-align: center;
+    font-weight: 600;
+    
 }
 
 #left-input_select, #right-input_select{

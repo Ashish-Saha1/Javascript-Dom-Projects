@@ -651,6 +651,8 @@ const converter = {
 }
 
 
+let previousLeftSelect = '';
+let previousRightSelect = '';
 
 
 
@@ -680,7 +682,7 @@ window.onload = function(){
        
     // For default value set
     updateOptions(categorySelect,leftSelect,rightSelect)
-   
+    calculateValue(categorySelect,leftSelect, rightSelect)
 
     
     //Added options into left Select category input field
@@ -692,11 +694,54 @@ window.onload = function(){
          categorySelect.addEventListener('change', (event)=>{
             updateOptions(categorySelect,leftSelect,rightSelect)
         })
-        
 
+
+    
+        leftSelect.addEventListener('change',function(event){
+            if(event.target.value === rightSelect.value){
+                let options = rightSelect.getElementsByTagName('option')
+                for(let i = 0; i<options.length; i++){
+                  
+                    if(previousLeftSelect === options[i].value){
+                        options[i].selected = 'selected';
+                        console.log(previousRightSelect)
+                        previousRightSelect = options[i].value;
+                        console.log(previousRightSelect)
+                        break
+                    }
+
+                }
+                previousLeftSelect = event.target.value;
+            }
+
+            calculateValue(categorySelect,leftSelect, rightSelect)
+        })
+
+
+        rightSelect.addEventListener('change',function(event){
+            if(event.target.value === leftSelect.value){
+                let options = leftSelect.getElementsByTagName('option')
+                for(let i = 0; i<options.length; i++){
+                  
+                    if(previousRightSelect === options[i].value){
+                        options[i].selected = 'selected';
+                        previousLeftSelect = options[i].value
+                        break
+                    }
+
+                }
+                previousRightSelect = event.target.value;
+            }
+            calculateValue(categorySelect,leftSelect, rightSelect)
+        })
         
+        
+         
       
     }
+
+
+    //-----------------------------Main Ends-----------------------------
 
 
      /**
@@ -736,7 +781,7 @@ window.onload = function(){
                 addOptions(leftSelect, {value: item, text:converter[converterName].units[item]})
                 
             })
-
+            previousLeftSelect = leftSelect.value;
 
              //Right Select
              deleteAll(rightSelect)
@@ -746,9 +791,27 @@ window.onload = function(){
              })
 
             rightSelect[1].selected = 'selected';
-             
+            previousRightSelect = rightSelect.value;
+
+            calculateValue(categorySelect,leftSelect, rightSelect)
     }
     
 
+
+    function calculateValue(categorySelect,leftSelect, rightSelect){
+        let leftInput = document.getElementById('left-input-box');
+        let rightInput = document.getElementById('right-input-box');
+        let formulaText = document.getElementById('formula-text')
+        let converterName = categorySelect.value;
+        let variant = converter[converterName].variants
+        let variantKey = `${leftSelect.value}:${rightSelect.value}`
+
+        let calculationFormula = variant[variantKey].calculation;
+
+        leftInput.value = 1;
+        rightInput.value = calculationFormula(1)
+        formulaText.innerHTML = variant[variantKey].formula;
+
+    }
     
-    
+  
