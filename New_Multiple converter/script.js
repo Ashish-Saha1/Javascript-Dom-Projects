@@ -678,11 +678,21 @@ window.onload = function(){
         
     })
        
+    // For default value set
     updateOptions(categorySelect,leftSelect,rightSelect)
+   
 
     
     //Added options into left Select category input field
+            categorySelect.addEventListener('change', (event)=>{
+            updateOptions(categorySelect,leftSelect,rightSelect)
+        })
 
+    //Added options into Right Select category input field
+         categorySelect.addEventListener('change', (event)=>{
+            updateOptions(categorySelect,leftSelect,rightSelect)
+        })
+        
 
         
       
@@ -716,13 +726,27 @@ window.onload = function(){
 
    
     function updateOptions(categorySelect,leftSelect,rightSelect){
-        // let leftSelect = document.getElementById('left-input_select')
-        // let rightSelect = document.getElementById('right-input_select')
-        let converterName = categorySelect.value;
+            let converterName = categorySelect.value;
+            let units = converter[converterName].units
+            let options = Object.keys(units)
 
-        let converterUnits = Object.keys(converter[converterName].units)
+            //left Select
+            deleteAll(leftSelect)
+            options.forEach(item=>{
+                addOptions(leftSelect, {value: item, text:converter[converterName].units[item]})
+                
+            })
 
-    console.log(converterUnits)
+
+             //Right Select
+             deleteAll(rightSelect)
+             options.forEach(item=>{
+                 addOptions(rightSelect, {value: item, text:converter[converterName].units[item]})
+                 
+             })
+
+            rightSelect[1].selected = 'selected';
+             
     }
     
 
