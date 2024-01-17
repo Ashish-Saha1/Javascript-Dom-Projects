@@ -667,7 +667,9 @@ window.onload = function(){
     
     let categorySelect = document.getElementById('category-select');
     let leftSelect = document.getElementById('left-input_select')
-    let rightSelect = document.getElementById('right-input_select')
+    let rightSelect = document.getElementById('right-input_select');
+    let leftInput = document.getElementById('left-input-box');
+    let rightInput = document.getElementById('right-input-box');
     let converters = Object.keys(converter).sort();
 
     
@@ -735,7 +737,35 @@ window.onload = function(){
             calculateValue(categorySelect,leftSelect, rightSelect)
         })
         
+
+        leftInput.addEventListener('keyup', function(event){
+       
+        let rightInput = document.getElementById('right-input-box');
+  
+        let converterName = categorySelect.value;
+        let variant = converter[converterName].variants
+        let variantKey = `${leftSelect.value}:${rightSelect.value}`
+
+        let calculationFormula = variant[variantKey].calculation;
+
+
+        rightInput.value = calculationFormula(event.target.value)
+        })
         
+
+        rightInput.addEventListener('keyup', function(event){
+       
+            let leftInput = document.getElementById('left-input-box');
+      
+            let converterName = categorySelect.value;
+            let variant = converter[converterName].variants
+            let variantKey = `${leftSelect.value}:${rightSelect.value}`
+    
+            let calculationFormula = variant[variantKey].calculationRevarse;
+    
+    
+            leftInput.value = calculationFormula(event.target.value)
+            })
          
       
     }

@@ -49,7 +49,7 @@ body{
     font-size: 15px;
     text-align: center;
     font-weight: 600;
-    
+    width: 100%;
 }
 
 #left-input_select, #right-input_select{
@@ -75,7 +75,7 @@ body{
 }
 
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 600px) {
     .container{
         width: 100%;
         
