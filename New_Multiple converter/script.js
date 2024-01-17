@@ -716,7 +716,8 @@ window.onload = function(){
                 previousLeftSelect = event.target.value;
             }
 
-            calculateValue(categorySelect,leftSelect, rightSelect)
+            //calculateValue(categorySelect,leftSelect, rightSelect)
+            myFun(categorySelect,leftSelect, rightSelect, leftInput)
         })
 
 
@@ -734,9 +735,17 @@ window.onload = function(){
                 }
                 previousRightSelect = event.target.value;
             }
-            calculateValue(categorySelect,leftSelect, rightSelect)
+            //calculateValue(categorySelect,leftSelect, rightSelect)
+            myFun(categorySelect,leftSelect, rightSelect, rightInput)
         })
         
+        // leftInput.addEventListener('keyup', function(event){
+        //     myFun(categorySelect,leftSelect, rightSelect, rightInput)
+        // })
+
+        // rightInput.addEventListener('keyup', function(event){
+        //     myFun(categorySelect,leftSelect, rightSelect, leftInput)
+        // })
 
         leftInput.addEventListener('keyup', function(event){
        
@@ -845,3 +854,18 @@ window.onload = function(){
     }
     
   
+
+    function myFun(categorySelect,leftSelect, rightSelect, input){
+        
+            //let leftInput = document.getElementById('left-input-box');
+            //let rightInput = document.getElementById('right-input-box');
+            let converterName = categorySelect.value;
+            let variant = converter[converterName].variants
+            let variantKey = `${leftSelect.value}:${rightSelect.value}`
+    console.log(variantKey)
+            let calculationFormula = variant[variantKey].calculationRevarse;
+    
+    // Check here to go office
+            input.value = calculationFormula(input.value)
+          console.log(input.value)
+    }
