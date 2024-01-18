@@ -717,7 +717,7 @@ window.onload = function(){
             }
 
             //calculateValue(categorySelect,leftSelect, rightSelect)
-            myFun(categorySelect,leftSelect, rightSelect,rightInput, leftInput)
+            leftSelectCalculateHandlar(categorySelect,leftSelect, rightSelect)
         })
 
 
@@ -736,16 +736,10 @@ window.onload = function(){
                 previousRightSelect = event.target.value;
             }
             //calculateValue(categorySelect,leftSelect, rightSelect)
-            myFun(categorySelect,leftSelect, rightSelect, leftInput, rightInput)
+            rightSelectCalculateHandlar(categorySelect,leftSelect, rightSelect)
         })
         
-        // leftInput.addEventListener('keyup', function(event){
-        //     myFun(categorySelect,leftSelect, rightSelect, rightInput)
-        // })
-
-        // rightInput.addEventListener('keyup', function(event){
-        //     myFun(categorySelect,leftSelect, rightSelect, leftInput)
-        // })
+        
 
         leftInput.addEventListener('keyup', function(event){
        
@@ -850,27 +844,58 @@ window.onload = function(){
         leftInput.value = 1;
         rightInput.value = calculationFormula(1)
         formulaText.innerHTML = variant[variantKey].formula;
-
+        console.log(leftInput.value)
+        console.log(rightInput.value)
     }
     
   
 
-    function myFun(categorySelect,leftSelect, rightSelect, inputValue, curentInp){
+/**
+ * update right side input data by selecting right side dropdwon list to calculate 
+ * left side data
+ * @param {object} categorySelect 
+ * @param {object} leftSelect 
+ * @param {object} rightSelect 
+ */
+     function rightSelectCalculateHandlar(categorySelect,leftSelect, rightSelect){
+        let leftInput = document.getElementById('left-input-box');
+        let rightInput = document.getElementById('right-input-box');
         let formulaText = document.getElementById('formula-text')
-            let leftInput = document.getElementById('left-input-box');
-            
-            let converterName = categorySelect.value;
-            let variant = converter[converterName].variants
-            let variantKey = `${leftSelect.value}:${rightSelect.value}`
-    console.log(variantKey)
+        let converterName = categorySelect.value;
+        let variant = converter[converterName].variants
+        let variantKey = `${leftSelect.value}:${rightSelect.value}`
 
-    formulaText.innerHTML = variant[variantKey].formula;
-            let calculationFormula = variant[variantKey].calculation;
-    
-    // Check here to go office
-    console.log(inputValue.value)
-    curentInp.value = calculationFormula(inputValue.value)
-    console.log(inputValue.value)
+        let calculationFormula = variant[variantKey].calculation;
+
+        console.log(variantKey)
+        rightInput.value = calculationFormula(leftInput.value)
+        formulaText.innerHTML = variant[variantKey].formula;
+   
    
     
-    }
+     }
+
+
+     function leftSelectCalculateHandlar(categorySelect,leftSelect, rightSelect){
+        let leftInput = document.getElementById('left-input-box');
+        let rightInput = document.getElementById('right-input-box');
+        let formulaText = document.getElementById('formula-text')
+        let converterName = categorySelect.value;
+        let variant = converter[converterName].variants
+        let variantKey = `${leftSelect.value}:${rightSelect.value}`
+
+        let calculationFormula = variant[variantKey].calculationRevarse;
+
+        console.log(variantKey)
+        leftInput.value = calculationFormula(rightInput.value)
+        formulaText.innerHTML = variant[variantKey].formula;
+   
+   
+    
+     }
+
+
+
+
+
+     //Formula can't update in display due to object not update properly
